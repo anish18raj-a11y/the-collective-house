@@ -2,6 +2,79 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#100b09"><title>HER HOUR — The Collective House</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet"><style>
 :root{--bg:#100b09;--ink:#f4eee5;--muted:#aaa097;--line:rgba(244,238,229,.13);--accent:#9a5037;--accent2:#c47a5d;--serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",Arial,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans)}a{text-decoration:none;color:inherit}.wrap{min-height:100vh;padding:35px 7vw 70px}.top{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;font-size:10px;font-weight:700;letter-spacing:.15em}.logo img{width:58px;height:58px;border-radius:9px;object-fit:cover}.back{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}.back:hover{color:var(--ink)}main{max-width:1050px;margin:110px auto 0;display:grid;grid-template-columns:1fr 430px;gap:80px;align-items:center}.k{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2)}h1{font-family:var(--serif);font-size:clamp(70px,11vw,140px);font-weight:500;line-height:.78;margin:22px 0}h1 em{color:var(--accent2)}.intro{color:var(--muted);line-height:1.8;font-size:14px;max-width:470px}.facts{display:flex;gap:28px;flex-wrap:wrap;margin-top:35px}.fact small{display:block;color:#786e67;font-size:8px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:7px}.fact strong{font-size:12px;font-weight:500}.panel{border:1px solid var(--line);border-radius:24px;padding:26px;background:rgba(255,255,255,.025)}.panel h2{font-family:var(--serif);font-weight:500;font-size:30px;margin:0 0 6px}.panel>p{color:var(--muted);font-size:12px;line-height:1.6;margin:0 0 20px}.field{margin:14px 0}.field label{display:block;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#897d75;margin-bottom:7px}.field input,.field select{width:100%;padding:12px;background:#0c0807;border:1px solid var(--line);border-radius:10px;color:var(--ink);outline:none}.total{display:flex;justify-content:space-between;align-items:center;margin:20px 0}.total strong{font-family:var(--serif);font-size:28px;font-weight:500}.pay{width:100%;padding:14px;border:0;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.pay:hover{background:var(--accent2)}.status{font-size:11px;color:var(--muted);margin-top:12px}.success{display:none;margin-top:14px;padding:17px;border:1px solid rgba(196,122,93,.4);border-radius:13px}.success.show{display:block}.success strong{font-family:var(--serif);font-size:23px;font-weight:500}.success p{font-size:11px;color:var(--muted);line-height:1.6;margin:6px 0 0}@media(max-width:800px){.logo img{width:52px;height:52px}.wrap{padding:25px 6vw 60px}main{display:block;margin-top:80px}.panel{margin-top:55px}h1{font-size:clamp(72px,20vw,110px)}}@media(max-width:450px){.facts{display:grid;grid-template-columns:1fr 1fr}}
 </style></head><body><div class="wrap"><div class="top"><a class="logo" href="index.html"><img src="tch-logo.png" alt="TCH"><span>THE COLLECTIVE HOUSE</span></a><a class="back" href="index.html">← Back to the house</a></div><main><div><div class="k">A TCH Experience · 24 October 2026</div><h1>HER<br><em>HOUR.</em></h1><p class="intro">An evening for women to connect, celebrate, meet new people and enjoy a room designed around good energy.</p><div class="facts"><div class="fact"><small>Venue</small><strong>Bizou Cafe & Grill</strong></div><div class="fact"><small>Time</small><strong>6:00 PM onwards</strong></div><div class="fact"><small>Ticket</small><strong>₹2,000 / person</strong></div><div class="fact"><small>Includes</small><strong>Refreshments</strong></div></div></div><div class="panel"><h2>Reserve your spot.</h2><p>Choose your tickets and continue to secure payment.</p><form id="f"><div class="field"><label>Full name</label><input id="name" required></div><div class="field"><label>WhatsApp number</label><input id="phone" required inputmode="tel"></div><div class="field"><label>Email address</label><input id="email" required type="email"></div><div class="field"><label>Number of tickets</label><select id="tickets"><option value="1">1 ticket — ₹2,000</option><option value="2">2 tickets — ₹4,000</option><option value="3">3 tickets — ₹6,000</option><option value="4">4 tickets — ₹8,000</option></select></div><div class="total"><span>Total</span><strong id="total">₹2,000</strong></div><button class="pay">Continue to secure payment →</button><div id="status" class="status"></div><div id="success" class="success"><strong>You're on the list.</strong><p>Your payment was received successfully. We'll use your details to confirm your booking.</p></div></form></div></main></div><script src="https://checkout.razorpay.com/v1/checkout.js"></script><script>
-const p=2000,t=document.getElementById('tickets');t.onchange=()=>document.getElementById('total').textContent='₹'+(Number(t.value)*p).toLocaleString('en-IN');
-document.getElementById('f').onsubmit=async e=>{e.preventDefault();const s=document.getElementById('status');s.textContent='Preparing secure payment…';try{const data={name:document.getElementById('name').value.trim(),phone:document.getElementById('phone').value.trim(),email:document.getElementById('email').value.trim(),tickets:Number(t.value),amount:Number(t.value)*p};const r=await fetch('/api/create-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});const o=await r.json();if(!r.ok)throw new Error(o.error||'Unable to create Razorpay order');const rz=new Razorpay({key:o.key,amount:o.amount,currency:'INR',name:'The Collective House',description:'HER HOUR by TCH',order_id:o.id,prefill:{name:data.name,email:data.email,contact:data.phone},theme:{color:'#9a5037'},handler:async x=>{const v=await fetch('/api/verify-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...x,...data})});const j=await v.json();if(j.verified){s.textContent='';document.getElementById('success').classList.add('show')}}});rz.open()}catch(x){s.textContent=(x&&x.message)?'Payment setup error: '+x.message:'Payment setup error. Please try again.'}};
+const p=2000;
+const t=document.getElementById('tickets');
+const nameInput=document.getElementById('name');
+const phoneInput=document.getElementById('phone');
+const emailInput=document.getElementById('email');
+const form=document.getElementById('f');
+const status=document.getElementById('status');
+
+t.onchange=()=>{
+  document.getElementById('total').textContent='₹'+
+  (Number(t.value)*p).toLocaleString('en-IN');
+};
+
+form.onsubmit=async e=>{
+  e.preventDefault();
+  status.textContent='Preparing secure payment…';
+
+  try{
+    const data={
+      name:nameInput.value.trim(),
+      phone:phoneInput.value.trim(),
+      email:emailInput.value.trim(),
+      tickets:Number(t.value),
+      amount:Number(t.value)*p
+    };
+
+    const r=await fetch('/api/create-order',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(data)
+    });
+
+    const o=await r.json();
+
+    if(!r.ok){
+      throw new Error(o.error||'Unable to create Razorpay order');
+    }
+
+    const rz=new Razorpay({
+      key:o.key,
+      amount:o.amount,
+      currency:'INR',
+      name:'The Collective House',
+      description:'HER HOUR by TCH',
+      order_id:o.id,
+      prefill:{
+        name:data.name,
+        email:data.email,
+        contact:data.phone
+      },
+      theme:{color:'#9a5037'},
+      handler:async x=>{
+        const v=await fetch('/api/verify-payment',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({...x,...data})
+        });
+
+        const j=await v.json();
+
+        if(j.verified){
+          status.textContent='';
+          document.getElementById('success').classList.add('show');
+        }else{
+          throw new Error(j.error||'Payment verification failed');
+        }
+      }
+    });
+
+    rz.open();
+
+  }catch(x){
+    status.textContent=x.message||'Payment setup is not ready yet. Please try again shortly.';
+  }
+};
 </script></body></html>
