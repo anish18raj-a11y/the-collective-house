@@ -17,16 +17,17 @@ export default async function handler(req, res) {
     } = req.body || {};
 
     if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature) {
-  return res.status(400).json({
-    verified: false,
-    error: 'Missing payment verification details.',
-    received: {
-      order_id: !!razorpay_order_id,
-      payment_id: !!razorpay_payment_id,
-      signature: !!razorpay_signature
+      return res.status(400).json({
+        verified: false,
+        error: 'Missing payment verification details.',
+        received: {
+          order_id: !!razorpay_order_id,
+          payment_id: !!razorpay_payment_id,
+          signature: !!razorpay_signature
+        }
+      });
     }
-  });
-}
+
     if (!process.env.RAZORPAY_KEY_SECRET) {
       return res.status(500).json({
         verified: false,
@@ -66,12 +67,16 @@ export default async function handler(req, res) {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
+            token: 'HERHOUR_TCH_2026',
             source: 'tch-website',
             event: 'her_hour_payment_verified',
+            bookingId:
+              'HH-' + razorpay_payment_id.slice(-6).toUpperCase(),
             name,
             phone,
             email,
             tickets: Number(tickets),
+            amount: Number(tickets) * 1,
             order_id: razorpay_order_id,
             payment_id: razorpay_payment_id
           })
