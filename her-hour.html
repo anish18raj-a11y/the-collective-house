@@ -138,87 +138,121 @@
 .save-confirmation:hover {
   background: rgba(196, 122, 93, 0.12);
 }</style></head><body><div class="wrap"><div class="top"><a class="logo" href="index.html"><img src="tch-logo.png" alt="TCH"><span>THE COLLECTIVE HOUSE</span></a><a class="back" href="index.html">← Back to the house</a></div><main><div><div class="k">A TCH Experience · 24 October 2026</div><h1>HER<br><em>HOUR.</em></h1><p class="intro">An evening for women to connect, celebrate, meet new people and enjoy a room designed around good energy.</p><div class="facts"><div class="fact"><small>Venue</small><strong>Bizou Cafe & Grill</strong></div><div class="fact"><small>Time</small><strong>6:00 PM onwards</strong></div><div class="fact"><small>Ticket</small><strong>₹2,000 / person</strong></div><div class="fact"><small>Includes</small><strong>Refreshments</strong></div></div></div><div class="panel"><h2>Reserve your spot.</h2><p>Choose your tickets and continue to secure payment.</p><form id="f"><div class="field"><label>Full name</label><input id="name" required></div><div class="field"><label>WhatsApp number</label><input id="phone" required inputmode="tel"></div><div class="field"><label>Email address</label><input id="email" required type="email"></div><div class="field"><label>Number of tickets</label><select id="tickets"><option value="1">1 ticket — ₹2,000</option><option value="2">2 tickets — ₹4,000</option><option value="3">3 tickets — ₹6,000</option><option value="4">4 tickets — ₹8,000</option></select></div><div class="total"><span>Total</span><strong id="total">₹2,000</strong></div><button class="pay">Continue to secure payment →</button><div id="status" class="status"></div><div id="success" class="success">   <div class="confirm-card">      <div class="confirm-brand">THE COLLECTIVE HOUSE</div>      <div class="confirm-check">✓</div>      <h2>Payment Successful</h2>      <p class="confirm-sub">       Your booking for HER HOUR by TCH is confirmed.     </p>      <div class="ticket-card">        <div class="ticket-title">HER<br>HOUR</div>        <div class="ticket-by">BY THE COLLECTIVE HOUSE</div>        <div class="confirm-details">         <div>           <small>DATE</small>           <strong>24 OCTOBER 2026</strong>           <span>SATURDAY</span>         </div>          <div>           <small>TIME</small>           <strong>6:00 PM ONWARDS</strong>         </div>          <div>           <small>VENUE</small>           <strong>BIZOU CAFE &amp; GRILL</strong>           <span>COIMBATORE</span>         </div>       </div>        <div class="booking-row">         <div>           <small>TICKETS</small>           <strong id="confirmTickets">1 TICKET</strong>         </div>          <div>           <small>BOOKING ID</small>           <strong id="bookingId">HH-XXXXXX</strong>         </div>       </div>        <div class="payment-confirmed">         <span class="mini-check">✓</span>         <div>           <small>YOUR BOOKING IS CONFIRMED</small>           <p>Your payment was successful and your details have been recorded in our guest list.</p>         </div>       </div>        <div class="entry-note">         KEEP THIS CONFIRMATION FOR ENTRY.       </div>      </div>      <button class="save-confirmation" onclick="window.print()">       SAVE CONFIRMATION     </button>    </div> </div></form></div></main></div><script src="https://checkout.razorpay.com/v1/checkout.js"></script><script>
-const p=2000;
-const t=document.getElementById('tickets');
-const nameInput=document.getElementById('name');
-const phoneInput=document.getElementById('phone');
-const emailInput=document.getElementById('email');
-const form=document.getElementById('f');
-const status=document.getElementById('status');
+const p = 2000;
 
-t.onchange=()=>{
-  document.getElementById('total').textContent='₹'+
-  (Number(t.value)*p).toLocaleString('en-IN');
-};
+const t = document.getElementById('tickets');
+const nameInput = document.getElementById('name');
+const phoneInput = document.getElementById('phone');
+const emailInput = document.getElementById('email');
+const form = document.getElementById('f');
+const status = document.getElementById('status');
 
-form.onsubmit=async e=>{
+t.addEventListener('change', () => {
+  document.getElementById('total').textContent =
+    '₹' + (Number(t.value) * p).toLocaleString('en-IN');
+});
+
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  status.textContent='Preparing secure payment…';
 
-  try{
-    const data={
-      name:nameInput.value.trim(),
-      phone:phoneInput.value.trim(),
-      email:emailInput.value.trim(),
-      tickets:Number(t.value),
-      amount:Number(t.value)*p
+  status.textContent = 'Preparing secure payment…';
+
+  try {
+    const data = {
+      name: nameInput.value.trim(),
+      phone: phoneInput.value.trim(),
+      email: emailInput.value.trim(),
+      tickets: Number(t.value),
+      amount: Number(t.value) * p
     };
 
-    const r=await fetch('/api/create-order',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(data)
+    const response = await fetch('/api/create-order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
     });
 
-    const o=await r.json();
+    const order = await response.json();
 
-    if(!r.ok){
-      throw new Error(o.error||'Unable to create Razorpay order');
+    if (!response.ok) {
+      throw new Error(
+        order.error || 'Unable to create Razorpay order'
+      );
     }
 
-    const rz=new Razorpay({
-      key:o.key,
-      amount:o.amount,
-      currency:'INR',
-      name:'The Collective House',
-      description:'HER HOUR by TCH',
-      order_id:o.id,
-      prefill:{
-        name:data.name,
-        email:data.email,
-        contact:data.phone
+    if (typeof Razorpay === 'undefined') {
+      throw new Error('Razorpay checkout failed to load');
+    }
+
+    const options = {
+      key: order.key,
+      amount: order.amount,
+      currency: 'INR',
+      name: 'The Collective House',
+      description: 'HER HOUR by TCH',
+      order_id: order.id,
+
+      prefill: {
+        name: data.name,
+        email: data.email,
+        contact: data.phone
       },
-      theme:{color:'#9a5037'},
-      handler:async x=>{
-        const v=await fetch('/api/verify-payment',{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({...x,...data})
+
+      theme: {
+        color: '#9a5037'
+      },
+
+      handler: async function (payment) {
+        const verifyResponse = await fetch('/api/verify-payment', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            ...payment,
+            ...data
+          })
         });
 
-        const j=await v.json();
+        const result = await verifyResponse.json();
 
-        if(j.verified){
-          status.textContent='';
-           document.getElementById('confirm-name').textContent = data.name;
-  document.getElementById('confirm-tickets').textContent =
-    data.tickets + (data.tickets === 1 ? ' TICKET' : ' TICKETS');
-  document.getElementById('confirm-booking').textContent =
-    'HH-' + o.id.slice(-6).toUpperCase();
-
-  document.getElementById('success').classList.add('show');
-}
-          
-        }else{
-          throw new Error(j.error||'Payment verification failed');
+        if (!result.verified) {
+          throw new Error(
+            result.error || 'Payment verification failed'
+          );
         }
+
+        status.textContent = '';
+
+        document.getElementById('confirm-name').textContent =
+          data.name;
+
+        document.getElementById('confirm-tickets').textContent =
+          data.tickets +
+          (data.tickets === 1 ? ' TICKET' : ' TICKETS');
+
+        document.getElementById('confirm-booking').textContent =
+          'HH-' +
+          payment.razorpay_payment_id.slice(-6).toUpperCase();
+
+        document.getElementById('success').classList.add('show');
       }
+    };
+
+    const razorpay = new Razorpay(options);
+
+    razorpay.on('payment.failed', function () {
+      status.textContent = 'Payment failed. Please try again.';
     });
 
-    rz.open();
+    razorpay.open();
 
-  }catch(x){
-    status.textContent=x.message||'Payment setup is not ready yet. Please try again shortly.';
+  } catch (error) {
+    status.textContent =
+      error.message ||
+      'Payment setup is not ready yet. Please try again shortly.';
   }
-};
-</script></body></html>
+});
+  </script></body></html>
