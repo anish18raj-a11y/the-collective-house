@@ -9,7 +9,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
-<style>
+
+  /* TCH Premium Motion */
+.reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}<style>
 :root{
   --bg:#100b09;
   --bg2:#17100d;
@@ -430,6 +451,26 @@ footer{border-top:1px solid var(--line);padding:28px 0 42px;color:#776e68;font-s
   });
   updateTotal();
 })();
+  // TCH Premium Scroll Reveal
+const revealItems = document.querySelectorAll('section');
+
+revealItems.forEach((item, index) => {
+  item.classList.add('reveal');
+  item.style.transitionDelay = `${Math.min(index * 80, 320)}ms`;
+});
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+revealItems.forEach(item => revealObserver.observe(item));
 </script>
 </body>
   <!-- TCH production deployment sync -->
