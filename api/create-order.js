@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     });
     const data = await response.json();
     if (!response.ok) return res.status(502).json({error:data.error?.description || 'Razorpay could not create the order.'});
-    return res.status(200).json({orderId:data.id,amount:data.amount,keyId:process.env.RAZORPAY_KEY_ID});
+    return res.status(200).json({orderId:data.id,amount:data.amount,key:process.env.RAZORPAY_KEY_ID});
   } catch (e) {
     return res.status(500).json({error:'Unable to start payment right now.'});
   }
