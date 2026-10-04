@@ -1,258 +1,1411 @@
-<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#100b09"><title>HER HOUR — The Collective House</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet"><style>
-:root{--bg:#100b09;--ink:#f4eee5;--muted:#aaa097;--line:rgba(244,238,229,.13);--accent:#9a5037;--accent2:#c47a5d;--serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",Arial,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans)}a{text-decoration:none;color:inherit}.wrap{min-height:100vh;padding:35px 7vw 70px}.top{display:flex;justify-content:space-between;align-items:center}.logo{display:flex;align-items:center;gap:12px;font-size:10px;font-weight:700;letter-spacing:.15em}.logo img{width:58px;height:58px;border-radius:9px;object-fit:cover}.back{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}.back:hover{color:var(--ink)}main{max-width:1050px;margin:110px auto 0;display:grid;grid-template-columns:1fr 430px;gap:80px;align-items:center}.k{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent2)}h1{font-family:var(--serif);font-size:clamp(70px,11vw,140px);font-weight:500;line-height:.78;margin:22px 0}h1 em{color:var(--accent2)}.intro{color:var(--muted);line-height:1.8;font-size:14px;max-width:470px}.facts{display:flex;gap:28px;flex-wrap:wrap;margin-top:35px}.fact small{display:block;color:#786e67;font-size:8px;letter-spacing:.15em;text-transform:uppercase;margin-bottom:7px}.fact strong{font-size:12px;font-weight:500}.panel{border:1px solid var(--line);border-radius:24px;padding:26px;background:rgba(255,255,255,.025)}.panel h2{font-family:var(--serif);font-weight:500;font-size:30px;margin:0 0 6px}.panel>p{color:var(--muted);font-size:12px;line-height:1.6;margin:0 0 20px}.field{margin:14px 0}.field label{display:block;font-size:8px;letter-spacing:.15em;text-transform:uppercase;color:#897d75;margin-bottom:7px}.field input,.field select{width:100%;padding:12px;background:#0c0807;border:1px solid var(--line);border-radius:10px;color:var(--ink);outline:none}.total{display:flex;justify-content:space-between;align-items:center;margin:20px 0}.total strong{font-family:var(--serif);font-size:28px;font-weight:500}.pay{width:100%;padding:14px;border:0;border-radius:999px;background:var(--ink);color:var(--bg);font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}.pay:hover{background:var(--accent2)}.status{font-size:11px;color:var(--muted);margin-top:12px}.success{display:none;margin-top:14px;padding:17px;border:1px solid rgba(196,122,93,.4);border-radius:13px}.success.show{display:block}.success strong{font-family:var(--serif);font-size:23px;font-weight:500}.success p{font-size:11px;color:var(--muted);line-height:1.6;margin:6px 0 0}@media(max-width:800px){.logo img{width:52px;height:52px}.wrap{padding:25px 6vw 60px}main{display:block;margin-top:80px}.panel{margin-top:55px}h1{font-size:clamp(72px,20vw,110px)}}@media(max-width:450px){.facts{display:grid;grid-template-columns:1fr 1fr}}
-/* HER HOUR CONFIRMATION CARD */
-.success.show {
-  display: block;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.confirm-card {
-  margin-top: 24px;
-  padding: 28px;
-  border: 1px solid rgba(196, 122, 93, 0.35);
-  border-radius: 18px;
-  background: linear-gradient(145deg, rgba(154, 80, 55, 0.18), rgba(255, 248, 238, 0.04));
-  text-align: center;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
-}
+  <title>HER HOUR by TCH — The Collective House</title>
 
-.confirm-brand {
-  font-size: 12px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 18px;
-}
+  <meta
+    name="description"
+    content="HER HOUR by The Collective House — 24 October 2026 at Bizou Cafe & Grill, Coimbatore."
+  >
 
-.confirm-check {
-  width: 54px;
-  height: 54px;
-  margin: 0 auto 18px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(196, 122, 93, 0.5);
-  color: #c47a5d;
-  font-size: 25px;
-}
+  <link rel="icon" href="tch-logo.png">
 
-.confirm-card h2 {
-  margin: 0 0 8px;
-  font-family: var(--serif);
-  font-size: 30px;
-  font-weight: 500;
-}
-
-.ticket-card {
-  margin-top: 22px;
-  padding: 22px;
-  border: 1px solid rgba(196, 122, 93, 0.25);
-  border-radius: 14px;
-  text-align: left;
-  background: rgba(255, 255, 255, 0.025);
-}
-
-.ticket-title {
-  font-family: var(--serif);
-  font-size: 24px;
-  letter-spacing: 0.08em;
-  margin-bottom: 18px;
-}
-
-.ticket-by {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  text-transform: uppercase;
-  margin-bottom: 18px;
-}
-
-.confirm-details {
-  display: grid;
-  gap: 14px;
-}
-
-.confirm-details div {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-.confirm-details div:last-child {
-  border-bottom: 0;
-}
-
-.confirm-details span {
-  font-size: 11px;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.confirm-details strong {
-  font-size: 13px;
-  text-align: right;
-}
-
-.booking-row {
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(196, 122, 93, 0.25);
-}
-
-.booking-row span {
-  font-size: 11px;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.booking-row strong {
-  font-family: monospace;
-  font-size: 16px;
-  letter-spacing: 0.08em;
-}
-
-.confirm-sub {
-  margin-top: 18px;
-  font-size: 12px;
-  line-height: 1.7;
-  color: var(--muted);
-}
-
-.save-confirmation {
-  margin-top: 20px;
-  padding: 12px 18px;
-  border: 1px solid rgba(196, 122, 93, 0.35);
-  border-radius: 999px;
-  background: transparent;
-  color: inherit;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.save-confirmation:hover {
-  background: rgba(196, 122, 93, 0.12);
-}</style></head><body><div class="wrap"><div class="top"><a class="logo" href="index.html"><img src="tch-logo.png" alt="TCH"><span>THE COLLECTIVE HOUSE</span></a><a class="back" href="index.html">← Back to the house</a></div><main><div><div class="k">A TCH Experience · 24 October 2026</div><h1>HER<br><em>HOUR.</em></h1><p class="intro">An evening for women to connect, celebrate, meet new people and enjoy a room designed around good energy.</p><div class="facts"><div class="fact"><small>Venue</small><strong>Bizou Cafe & Grill</strong></div><div class="fact"><small>Time</small><strong>6:00 PM onwards</strong></div><div class="fact"><small>Ticket</small><strong>₹2,000 / person</strong></div><div class="fact"><small>Includes</small><strong>Refreshments</strong></div></div></div><div class="panel"><h2>Reserve your spot.</h2><p>Choose your tickets and continue to secure payment.</p><form id="f"><div class="field"><label>Full name</label><input id="name" required></div><div class="field"><label>WhatsApp number</label><input id="phone" required inputmode="tel"></div><div class="field"><label>Email address</label><input id="email" required type="email"></div><div class="field"><label>Number of tickets</label><select id="tickets"><option value="1">1 ticket — ₹2,000</option><option value="2">2 tickets — ₹4,000</option><option value="3">3 tickets — ₹6,000</option><option value="4">4 tickets — ₹8,000</option></select></div><div class="total"><span>Total</span><strong id="total">₹2,000</strong></div><button class="pay">Continue to secure payment →</button><div id="status" class="status"></div><div id="success" class="success">   <div class="confirm-card">      <div class="confirm-brand">THE COLLECTIVE HOUSE</div>      <div class="confirm-check">✓</div>      <h2>Payment Successful</h2>      <p class="confirm-sub">       Your booking for HER HOUR by TCH is confirmed.     </p>      <div class="ticket-card">        <div class="ticket-title">HER<br>HOUR</div>        <div class="ticket-by">BY THE COLLECTIVE HOUSE</div>        <div class="confirm-details">         <div>           <small>DATE</small>           <strong>24 OCTOBER 2026</strong>           <span>SATURDAY</span>         </div>          <div>           <small>TIME</small>           <strong>6:00 PM ONWARDS</strong>         </div>          <div>           <small>VENUE</small>           <strong>BIZOU CAFE &amp; GRILL</strong>           <span>COIMBATORE</span>         </div>       </div>        <div class="booking-row">         <div>           <small>TICKETS</small>           <strong id="confirmTickets">1 TICKET</strong>         </div>          <div>           <small>BOOKING ID</small>           <strong id="bookingId">HH-XXXXXX</strong>         </div>       </div>        <div class="payment-confirmed">         <span class="mini-check">✓</span>         <div>           <small>YOUR BOOKING IS CONFIRMED</small>           <p>Your payment was successful and your details have been recorded in our guest list.</p>         </div>       </div>        <div class="entry-note">         KEEP THIS CONFIRMATION FOR ENTRY.       </div>      </div>      <button class="save-confirmation" onclick="window.print()">       SAVE CONFIRMATION     </button>    </div> </div></form></div></main></div><script src="https://checkout.razorpay.com/v1/checkout.js"></script><script>
-const p = 1;
-
-const t = document.getElementById('tickets');
-const nameInput = document.getElementById('name');
-const phoneInput = document.getElementById('phone');
-const emailInput = document.getElementById('email');
-const form = document.getElementById('f');
-const status = document.getElementById('status');
-
-t.addEventListener('change', () => {
-  document.getElementById('total').textContent =
-    '₹' + (Number(t.value) * p).toLocaleString('en-IN');
-});
-
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  status.textContent = 'Preparing secure payment…';
-
-  try {
-    const data = {
-      name: nameInput.value.trim(),
-      phone: phoneInput.value.trim(),
-      email: emailInput.value.trim(),
-      tickets: Number(t.value),
-      amount: Number(t.value) * p
-    };
-
-    const response = await fetch('/api/create-order', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-
-    const order = await response.json();
-
-    if (!response.ok) {
-      throw new Error(
-        order.error || 'Unable to create Razorpay order'
-      );
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    if (typeof Razorpay === 'undefined') {
-      throw new Error('Razorpay checkout failed to load');
+    html {
+      scroll-behavior: smooth;
     }
 
-    const options = {
-      key: order.key,
-      amount: order.amount,
-      currency: 'INR',
-      name: 'The Collective House',
-      description: 'HER HOUR by TCH',
-      order_id: order.id,
+    body {
+      background: #17110e;
+      color: #f5eee7;
+      font-family: Georgia, "Times New Roman", serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
 
-      prefill: {
-        name: data.name,
-        email: data.email,
-        contact: data.phone
-      },
+    body::before {
+      content: "";
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(154, 80, 55, 0.08);
+      filter: blur(100px);
+      top: -200px;
+      right: -150px;
+      pointer-events: none;
+      z-index: -1;
+    }
 
-      theme: {
-        color: '#9a5037'
-      },
+    body::after {
+      content: "";
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(215, 182, 150, 0.04);
+      filter: blur(100px);
+      bottom: -200px;
+      left: -150px;
+      pointer-events: none;
+      z-index: -1;
+    }
 
-      handler: async function (payment) {
-        const verifyResponse = await fetch('/api/verify-payment', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-body: JSON.stringify({
-  razorpay_order_id: payment.razorpay_order_id,
-  razorpay_payment_id: payment.razorpay_payment_id,
-  razorpay_signature: payment.razorpay_signature,
-  name: data.name,
-  phone: data.phone,
-  email: data.email,
-tickets: data.tickets
-        })
-      });
-        const result = await verifyResponse.json();
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-        if (!result.verified) {
+    .page {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 30px 0 80px;
+    }
+
+    /* HEADER */
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 50px;
+      animation: fadeDown 0.8s ease forwards;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: 0.16em;
+      font-size: 13px;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .back {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      transition: opacity 0.25s ease;
+    }
+
+    .back:hover {
+      opacity: 1;
+    }
+
+    /* HERO */
+
+    .hero {
+      text-align: center;
+      padding: 50px 0 75px;
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    .eyebrow {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #c99d86;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(58px, 11vw, 130px);
+      line-height: 0.82;
+      font-weight: 400;
+      letter-spacing: -0.055em;
+    }
+
+    .hero h1 span {
+      display: block;
+      font-style: italic;
+      margin-left: 0.08em;
+    }
+
+    .hero-copy {
+      max-width: 530px;
+      margin: 34px auto 0;
+      color: #cfc2b9;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* EVENT INFORMATION */
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(245, 238, 231, 0.15);
+      border-bottom: 1px solid rgba(245, 238, 231, 0.15);
+      margin-bottom: 90px;
+      animation: fadeUp 1s ease forwards;
+    }
+
+    .event-item {
+      padding: 28px 25px;
+      text-align: center;
+      border-right: 1px solid rgba(245, 238, 231, 0.15);
+    }
+
+    .event-item:last-child {
+      border-right: none;
+    }
+
+    .event-item small {
+      display: block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      color: #9d8c80;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .event-item strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+    }
+
+    /* BOOKING SECTION */
+
+    .booking-section {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 90px;
+      align-items: start;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .booking-intro {
+      padding-top: 10px;
+    }
+
+    .booking-intro .eyebrow {
+      text-align: left;
+    }
+
+    .booking-intro h2 {
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 0.95;
+      font-weight: 400;
+      letter-spacing: -0.04em;
+    }
+
+    .booking-intro h2 em {
+      font-style: italic;
+    }
+
+    .booking-intro p {
+      margin-top: 25px;
+      color: #aa9b91;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      line-height: 1.8;
+      max-width: 340px;
+    }
+
+    /* FORM */
+
+    .form-card {
+      border: 1px solid rgba(245, 238, 231, 0.13);
+      background: rgba(255, 255, 255, 0.025);
+      padding: 38px;
+      position: relative;
+    }
+
+    .form-card::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(245, 238, 231, 0.035);
+      pointer-events: none;
+    }
+
+    .field {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 25px;
+    }
+
+    .field label {
+      display: block;
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.17em;
+      font-size: 9px;
+      color: #9d8c80;
+      margin-bottom: 9px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid rgba(245, 238, 231, 0.2);
+      background: transparent;
+      color: #f5eee7;
+      padding: 11px 0;
+      outline: none;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      border-radius: 0;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-bottom-color: #b87559;
+    }
+
+    .field select option {
+      background: #201713;
+      color: #f5eee7;
+    }
+
+    .total {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(245, 238, 231, 0.12);
+      margin-top: 35px;
+      padding-top: 22px;
+      margin-bottom: 25px;
+    }
+
+    .total span {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #9d8c80;
+    }
+
+    .total strong {
+      font-size: 25px;
+      font-weight: 400;
+    }
+
+    .pay {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border: 1px solid #b87559;
+      background: #9a5037;
+      color: #fff8f3;
+      padding: 17px 20px;
+      cursor: pointer;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    .pay:hover {
+      background: #b76548;
+      transform: translateY(-2px);
+    }
+
+    .pay:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status {
+      position: relative;
+      z-index: 1;
+      min-height: 20px;
+      margin-top: 15px;
+      text-align: center;
+      color: #c99d86;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* SUCCESS */
+
+    .success {
+      display: none;
+      position: relative;
+      z-index: 2;
+      margin-top: 30px;
+    }
+
+    .success.show {
+      display: block;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .confirm-card {
+      background: #f4ede6;
+      color: #211712;
+      padding: 35px;
+      text-align: center;
+    }
+
+    .confirm-brand {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: #816d61;
+      margin-bottom: 24px;
+    }
+
+    .confirm-check {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #9a5037;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+    }
+
+    .confirm-card h2 {
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 7px;
+    }
+
+    .confirm-sub {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #796b62;
+      font-size: 12px;
+      margin-bottom: 25px;
+    }
+
+    .ticket-card {
+      border: 1px solid rgba(33, 23, 18, 0.18);
+      padding: 28px;
+      text-align: left;
+    }
+
+    .ticket-title {
+      font-size: 47px;
+      line-height: 0.8;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .ticket-by {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.2em;
+      color: #806e63;
+      margin-bottom: 30px;
+    }
+
+    .confirm-details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      border-top: 1px solid rgba(33, 23, 18, 0.13);
+      border-bottom: 1px solid rgba(33, 23, 18, 0.13);
+      padding: 20px 0;
+    }
+
+    .confirm-details small,
+    .booking-row small {
+      display: block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.16em;
+      color: #806e63;
+      margin-bottom: 6px;
+    }
+
+    .confirm-details strong,
+    .booking-row strong {
+      display: block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.03em;
+    }
+
+    .confirm-details span {
+      display: block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      color: #806e63;
+      margin-top: 3px;
+    }
+
+    .booking-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    .payment-confirmed {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(154, 80, 55, 0.08);
+      padding: 14px;
+      margin-top: 5px;
+    }
+
+    .mini-check {
+      width: 25px;
+      height: 25px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: #9a5037;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+    }
+
+    .payment-confirmed small {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.15em;
+    }
+
+    .payment-confirmed p {
+      margin-top: 4px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      line-height: 1.5;
+      color: #806e63;
+    }
+
+    .entry-note {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 8px;
+      letter-spacing: 0.18em;
+      margin-top: 24px;
+      color: #806e63;
+    }
+
+    .save-confirmation {
+      margin-top: 18px;
+      width: 100%;
+      border: 1px solid #9a5037;
+      background: transparent;
+      color: #9a5037;
+      padding: 14px;
+      cursor: pointer;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+    }
+
+    .save-confirmation:hover {
+      background: #9a5037;
+      color: white;
+    }
+
+    /* FOOTER */
+
+    .footer {
+      text-align: center;
+      padding-top: 100px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.18em;
+      color: #75655c;
+      text-transform: uppercase;
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+      .page {
+        width: min(100% - 28px, 600px);
+        padding-top: 20px;
+      }
+
+      .header {
+        padding-bottom: 30px;
+      }
+
+      .hero {
+        padding: 45px 0 55px;
+      }
+
+      .hero h1 {
+        font-size: clamp(58px, 20vw, 105px);
+      }
+
+      .event-grid {
+        grid-template-columns: 1fr;
+        margin-bottom: 60px;
+      }
+
+      .event-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(245, 238, 231, 0.15);
+      }
+
+      .event-item:last-child {
+        border-bottom: none;
+      }
+
+      .booking-section {
+        grid-template-columns: 1fr;
+        gap: 45px;
+      }
+
+      .booking-intro .eyebrow {
+        text-align: center;
+      }
+
+      .booking-intro {
+        text-align: center;
+      }
+
+      .booking-intro p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .form-card {
+        padding: 25px 20px;
+      }
+
+      .confirm-card {
+        padding: 25px 15px;
+      }
+
+      .ticket-card {
+        padding: 20px 15px;
+      }
+
+      .confirm-details {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      body > * {
+        display: none !important;
+      }
+
+      .success,
+      .success * {
+        display: block !important;
+      }
+
+      .success {
+        position: static;
+        margin: 0;
+      }
+
+      .confirm-card {
+        width: 100%;
+      }
+
+      .save-confirmation {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- HEADER -->
+    <header class="header">
+      <a href="index.html" class="brand">
+        <img src="tch-logo.png" alt="The Collective House">
+        <span>THE COLLECTIVE HOUSE</span>
+      </a>
+
+      <a href="index.html" class="back">
+        Back to TCH
+      </a>
+    </header>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="eyebrow">
+        An evening by The Collective House
+      </div>
+
+      <h1>
+        HER
+        <span>HOUR</span>
+      </h1>
+
+      <p class="hero-copy">
+        A space to connect, unwind, celebrate and simply be.
+        HER HOUR is an intimate evening curated by The Collective House.
+      </p>
+
+    </section>
+
+
+    <!-- EVENT INFORMATION -->
+    <section class="event-grid">
+
+      <div class="event-item">
+        <small>Date</small>
+        <strong>24 October 2026</strong>
+      </div>
+
+      <div class="event-item">
+        <small>Time</small>
+        <strong>6:00 PM onwards</strong>
+      </div>
+
+      <div class="event-item">
+        <small>Venue</small>
+        <strong>Bizou Cafe &amp; Grill</strong>
+      </div>
+
+    </section>
+
+
+    <!-- BOOKING -->
+    <section class="booking-section">
+
+      <div class="booking-intro">
+
+        <div class="eyebrow">
+          Reserve your place
+        </div>
+
+        <h2>
+          Make it<br>
+          <em>your hour.</em>
+        </h2>
+
+        <p>
+          Secure your place at HER HOUR by The Collective House.
+          Complete your details and continue to secure your tickets.
+        </p>
+
+      </div>
+
+
+      <div class="form-card">
+
+        <form id="bookingForm">
+
+          <div class="field">
+            <label for="name">Full name</label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            >
+          </div>
+
+
+          <div class="field">
+            <label for="phone">WhatsApp number</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              inputmode="tel"
+              autocomplete="tel"
+              required
+            >
+          </div>
+
+
+          <div class="field">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            >
+          </div>
+
+
+          <div class="field">
+            <label for="tickets">Number of tickets</label>
+
+            <select id="tickets" name="tickets">
+              <option value="1">1 ticket — ₹1</option>
+              <option value="2">2 tickets — ₹2</option>
+              <option value="3">3 tickets — ₹3</option>
+              <option value="4">4 tickets — ₹4</option>
+            </select>
+          </div>
+
+
+          <div class="total">
+            <span>Total</span>
+            <strong id="total">₹1</strong>
+          </div>
+
+
+          <button
+            type="submit"
+            class="pay"
+            id="payButton"
+          >
+            Continue to secure payment →
+          </button>
+
+
+          <div
+            id="status"
+            class="status"
+            aria-live="polite"
+          ></div>
+
+
+          <!-- SUCCESS CONFIRMATION -->
+
+          <div id="success" class="success">
+
+            <div class="confirm-card">
+
+              <div class="confirm-brand">
+                THE COLLECTIVE HOUSE
+              </div>
+
+
+              <div class="confirm-check">
+                ✓
+              </div>
+
+
+              <h2>
+                Payment Successful
+              </h2>
+
+
+              <p class="confirm-sub">
+                Your booking for HER HOUR by TCH is confirmed.
+              </p>
+
+
+              <div class="ticket-card">
+
+                <div class="ticket-title">
+                  HER<br>
+                  HOUR
+                </div>
+
+
+                <div class="ticket-by">
+                  BY THE COLLECTIVE HOUSE
+                </div>
+
+
+                <div class="confirm-details">
+
+                  <div>
+                    <small>DATE</small>
+                    <strong>24 OCTOBER 2026</strong>
+                    <span>SATURDAY</span>
+                  </div>
+
+                  <div>
+                    <small>TIME</small>
+                    <strong>6:00 PM ONWARDS</strong>
+                  </div>
+
+                  <div>
+                    <small>VENUE</small>
+                    <strong>BIZOU CAFE &amp; GRILL</strong>
+                    <span>COIMBATORE</span>
+                  </div>
+
+                </div>
+
+
+                <div class="booking-row">
+
+                  <div>
+                    <small>TICKETS</small>
+                    <strong id="confirmTickets">
+                      1 TICKET
+                    </strong>
+                  </div>
+
+                  <div>
+                    <small>BOOKING ID</small>
+                    <strong id="bookingId">
+                      HH-XXXXXX
+                    </strong>
+                  </div>
+
+                </div>
+
+
+                <div class="payment-confirmed">
+
+                  <span class="mini-check">
+                    ✓
+                  </span>
+
+                  <div>
+                    <small>
+                      YOUR BOOKING IS CONFIRMED
+                    </small>
+
+                    <p>
+                      Your payment was successful and your
+                      details have been recorded in our guest list.
+                    </p>
+                  </div>
+
+                </div>
+
+
+                <div class="entry-note">
+                  KEEP THIS CONFIRMATION FOR ENTRY.
+                </div>
+
+              </div>
+
+
+              <button
+                type="button"
+                class="save-confirmation"
+                id="saveConfirmation"
+              >
+                SAVE CONFIRMATION
+              </button>
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <footer class="footer">
+      © 2026 The Collective House
+    </footer>
+
+  </main>
+
+
+  <!-- RAZORPAY -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+  <script>
+    /*
+      ==========================================
+      HER HOUR PAYMENT FLOW
+      ==========================================
+
+      TEMPORARY TEST PRICE:
+      ₹1 per ticket
+
+      AFTER THE TEST WORKS:
+      Change TEST_PRICE to 2000.
+    */
+
+    const TEST_PRICE = 1;
+
+
+    /* DOM ELEMENTS */
+
+    const form = document.getElementById("bookingForm");
+    const nameInput = document.getElementById("name");
+    const phoneInput = document.getElementById("phone");
+    const emailInput = document.getElementById("email");
+    const ticketsInput = document.getElementById("tickets");
+
+    const totalElement = document.getElementById("total");
+    const statusElement = document.getElementById("status");
+    const payButton = document.getElementById("payButton");
+
+    const successElement = document.getElementById("success");
+    const confirmTicketsElement =
+      document.getElementById("confirmTickets");
+
+    const bookingIdElement =
+      document.getElementById("bookingId");
+
+    const saveConfirmationButton =
+      document.getElementById("saveConfirmation");
+
+
+    /* UPDATE TOTAL */
+
+    function updateTotal() {
+
+      const tickets = Number(ticketsInput.value);
+
+      const total = tickets * TEST_PRICE;
+
+      totalElement.textContent =
+        "₹" + total.toLocaleString("en-IN");
+    }
+
+
+    ticketsInput.addEventListener(
+      "change",
+      updateTotal
+    );
+
+    updateTotal();
+
+
+    /* STATUS */
+
+    function setStatus(message) {
+      statusElement.textContent = message;
+    }
+
+
+    /* SUBMIT */
+
+    form.addEventListener("submit", async function (event) {
+
+      event.preventDefault();
+
+
+      /* BASIC VALIDATION */
+
+      const name = nameInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const email = emailInput.value.trim();
+      const tickets = Number(ticketsInput.value);
+
+
+      if (!name) {
+        setStatus("Please enter your full name.");
+        nameInput.focus();
+        return;
+      }
+
+
+      if (!phone) {
+        setStatus("Please enter your WhatsApp number.");
+        phoneInput.focus();
+        return;
+      }
+
+
+      if (!email) {
+        setStatus("Please enter your email address.");
+        emailInput.focus();
+        return;
+      }
+
+
+      if (![1, 2, 3, 4].includes(tickets)) {
+        setStatus("Please select a valid number of tickets.");
+        return;
+      }
+
+
+      /* DISABLE BUTTON */
+
+      payButton.disabled = true;
+      payButton.textContent = "Preparing secure payment…";
+      setStatus("");
+
+
+      try {
+
+        /*
+          STEP 1
+          Ask our Vercel backend to create
+          a Razorpay order.
+        */
+
+        const orderResponse = await fetch(
+          "/api/create-order",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+              name: name,
+              phone: phone,
+              email: email,
+              tickets: tickets
+            })
+          }
+        );
+
+
+        const order = await orderResponse.json();
+
+
+        if (!orderResponse.ok) {
+
           throw new Error(
-            result.error || 'Payment verification failed'
+            order.error ||
+            "Unable to create payment order."
           );
+
         }
 
-       status.textContent = '';
 
-document.getElementById('confirmTickets').textContent =
-  data.tickets +
-  (data.tickets === 1 ? ' TICKET' : ' TICKETS');
+        if (!order.id) {
 
-document.getElementById('bookingId').textContent =
-  'HH-' +
-  payment.razorpay_payment_id.slice(-6).toUpperCase();
+          throw new Error(
+            "Razorpay order was not created."
+          );
 
-document.getElementById('success').classList.add('show');
-    };
+        }
 
-    const razorpay = new Razorpay(options);
 
-    razorpay.on('payment.failed', function () {
-      status.textContent = 'Payment failed. Please try again.';
+        /*
+          STEP 2
+          Open Razorpay Checkout.
+        */
+
+        const razorpayOptions = {
+
+          key: order.key,
+
+          amount: order.amount,
+
+          currency: "INR",
+
+          name: "The Collective House",
+
+          description: "HER HOUR by TCH",
+
+          order_id: order.id,
+
+          prefill: {
+            name: name,
+            email: email,
+            contact: phone
+          },
+
+          notes: {
+            name: name,
+            phone: phone,
+            email: email,
+            tickets: String(tickets)
+          },
+
+          theme: {
+            color: "#9a5037"
+          },
+
+
+          /*
+            STEP 3
+            Razorpay calls this after
+            successful payment.
+          */
+
+          handler: async function (payment) {
+
+            try {
+
+              setStatus(
+                "Payment received. Confirming your booking…"
+              );
+
+
+              /*
+                IMPORTANT:
+
+                We explicitly send the three
+                Razorpay verification fields.
+
+                This fixes the earlier
+                "Missing payment verification details"
+                problem.
+              */
+
+              const verifyResponse = await fetch(
+                "/api/verify-payment",
+                {
+                  method: "POST",
+
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+
+                  body: JSON.stringify({
+
+                    razorpay_order_id:
+                      payment.razorpay_order_id,
+
+                    razorpay_payment_id:
+                      payment.razorpay_payment_id,
+
+                    razorpay_signature:
+                      payment.razorpay_signature,
+
+                    name: name,
+
+                    phone: phone,
+
+                    email: email,
+
+                    tickets: tickets
+
+                  })
+                }
+              );
+
+
+              const result =
+                await verifyResponse.json();
+
+
+              if (!verifyResponse.ok) {
+
+                throw new Error(
+                  result.error ||
+                  "Payment verification failed."
+                );
+
+              }
+
+
+              if (!result.verified) {
+
+                throw new Error(
+                  result.error ||
+                  "Payment could not be verified."
+                );
+
+              }
+
+
+              /*
+                STEP 4
+                Show confirmation card.
+              */
+
+              confirmTicketsElement.textContent =
+                tickets +
+                (tickets === 1
+                  ? " TICKET"
+                  : " TICKETS");
+
+
+              bookingIdElement.textContent =
+                "HH-" +
+                payment.razorpay_payment_id
+                  .slice(-6)
+                  .toUpperCase();
+
+
+              statusElement.textContent = "";
+
+
+              successElement.classList.add("show");
+
+
+              /*
+                Scroll the confirmation
+                into view.
+              */
+
+              successElement.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+              });
+
+
+              payButton.style.display = "none";
+
+            }
+
+
+            catch (error) {
+
+              console.error(
+                "Payment verification error:",
+                error
+              );
+
+
+              setStatus(
+                error.message ||
+                "Payment verification failed. Please contact us."
+              );
+
+              payButton.disabled = false;
+
+              payButton.textContent =
+                "Continue to secure payment →";
+
+            }
+
+          },
+
+
+          modal: {
+
+            ondismiss: function () {
+
+              setStatus(
+                "Payment window closed. You can try again."
+              );
+
+              payButton.disabled = false;
+
+              payButton.textContent =
+                "Continue to secure payment →";
+
+            }
+
+          }
+
+        };
+
+
+        /*
+          STEP 5
+          Create Razorpay instance.
+        */
+
+        const razorpay =
+          new Razorpay(razorpayOptions);
+
+
+        razorpay.on(
+          "payment.failed",
+          function (response) {
+
+            console.error(
+              "Razorpay payment failed:",
+              response
+            );
+
+
+            setStatus(
+              response.error?.description ||
+              "Payment failed. Please try again."
+            );
+
+
+            payButton.disabled = false;
+
+            payButton.textContent =
+              "Continue to secure payment →";
+
+          }
+        );
+
+
+        /*
+          STEP 6
+          Open Razorpay.
+        */
+
+        razorpay.open();
+
+      }
+
+
+      catch (error) {
+
+        console.error(
+          "Payment initialization error:",
+          error
+        );
+
+
+        setStatus(
+          error.message ||
+          "Something went wrong. Please try again."
+        );
+
+
+        payButton.disabled = false;
+
+        payButton.textContent =
+          "Continue to secure payment →";
+
+      }
+
     });
 
-    razorpay.open();
 
-  } catch (error) {
-    status.textContent =
-      error.message ||
-      'Payment setup is not ready yet. Please try again shortly.';
-  }
-});
-  </script></body></html>
+    /* SAVE CONFIRMATION */
+
+    saveConfirmationButton.addEventListener(
+      "click",
+      function () {
+
+        window.print();
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
