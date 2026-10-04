@@ -38,7 +38,7 @@ export default async function handler(req, res) {
 
       After the test works, change 1 to 2000.
     */
-    const amount = count * 2000 * 100;
+    const amount = count * 1 * 100;
 
     // Make sure Razorpay credentials exist
     if (
