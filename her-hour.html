@@ -217,9 +217,9 @@ body: JSON.stringify({
   name: data.name,
   phone: data.phone,
   email: data.email,
-  tickets: data.tickets
-})
-
+tickets: data.tickets
+        })
+      });
         const result = await verifyResponse.json();
 
         if (!result.verified) {
@@ -228,21 +228,17 @@ body: JSON.stringify({
           );
         }
 
-        status.textContent = '';
+       status.textContent = '';
 
-        document.getElementById('confirm-name').textContent =
-          data.name;
+document.getElementById('confirmTickets').textContent =
+  data.tickets +
+  (data.tickets === 1 ? ' TICKET' : ' TICKETS');
 
-        document.getElementById('confirm-tickets').textContent =
-          data.tickets +
-          (data.tickets === 1 ? ' TICKET' : ' TICKETS');
+document.getElementById('bookingId').textContent =
+  'HH-' +
+  payment.razorpay_payment_id.slice(-6).toUpperCase();
 
-        document.getElementById('confirm-booking').textContent =
-          'HH-' +
-          payment.razorpay_payment_id.slice(-6).toUpperCase();
-
-        document.getElementById('success').classList.add('show');
-      }
+document.getElementById('success').classList.add('show');
     };
 
     const razorpay = new Razorpay(options);
