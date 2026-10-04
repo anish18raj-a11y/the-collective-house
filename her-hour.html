@@ -210,11 +210,15 @@ form.addEventListener('submit', async (e) => {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
-            ...payment,
-            ...data
-          })
-        });
+body: JSON.stringify({
+  razorpay_order_id: payment.razorpay_order_id,
+  razorpay_payment_id: payment.razorpay_payment_id,
+  razorpay_signature: payment.razorpay_signature,
+  name: data.name,
+  phone: data.phone,
+  email: data.email,
+  tickets: data.tickets
+})
 
         const result = await verifyResponse.json();
 
