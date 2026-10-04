@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
       return res.status(500).json({ error: 'Payment setup is not configured yet. Please add the Razorpay live keys in Vercel.' });
     }
-    const amount = count * 2000 * 100;
+    const amount = count * 1 * 100;
     const auth = Buffer.from(`${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`).toString('base64');
     const response = await fetch('https://api.razorpay.com/v1/orders', {
       method:'POST',
