@@ -6,1140 +6,907 @@
 
 <title>HER HOUR — The Collective House</title>
 
-<meta
-  name="description"
-  content="HER HOUR by The Collective House — 24 October 2026 at Bizou Cafe & Grill, Coimbatore."
->
-
-<!-- Razorpay -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-<!-- html2canvas — used to save the confirmation as an image -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-<!-- QR generator -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&family=Allura&display=swap');
-
-:root {
-  --bg: #120c09;
-  --bg2: #1b100c;
-  --cream: #f4e9dd;
-  --cream2: #dfcbb9;
-  --muted: #a99a8e;
-  --line: rgba(244,233,221,.22);
-  --soft-line: rgba(244,233,221,.12);
-  --green: #14251d;
-  --accent: #9a5037;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-* {
-  box-sizing: border-box;
+body{
+  background:#100806;
+  color:#f4e9dc;
+  font-family:Arial,Helvetica,sans-serif;
+  min-height:100vh;
 }
 
-html {
-  scroll-behavior: smooth;
+button,
+input,
+select{
+  font:inherit;
 }
 
-body {
-  margin: 0;
+.page{
+  min-height:100vh;
+  padding:35px 20px 70px;
   background:
-    radial-gradient(circle at 12% 20%, rgba(130,74,43,.22), transparent 30%),
-    radial-gradient(circle at 85% 55%, rgba(105,53,31,.18), transparent 35%),
-    linear-gradient(135deg, #0d0907, #1b100c 55%, #0d0907);
-  color: var(--cream);
-  font-family: "DM Sans", sans-serif;
-  min-height: 100vh;
+    radial-gradient(circle at 15% 20%,rgba(120,65,35,.35),transparent 30%),
+    radial-gradient(circle at 85% 65%,rgba(95,50,30,.3),transparent 35%),
+    linear-gradient(135deg,#0c0705,#24120d 50%,#100806);
 }
 
-/* =========================
-   BOOKING PAGE
-========================= */
+/* HEADER */
 
-.booking-page {
-  min-height: 100vh;
-  padding: 28px 22px 70px;
+.top{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:55px;
 }
 
-.top-nav {
-  max-width: 1180px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 50px;
+.logo{
+  letter-spacing:7px;
+  font-size:14px;
+  font-weight:500;
 }
 
-.brand {
-  font-size: 12px;
-  letter-spacing: .42em;
-  text-transform: uppercase;
+.nav{
+  text-align:right;
+  font-size:11px;
+  letter-spacing:4px;
+  line-height:2;
 }
 
-.back {
-  color: var(--cream);
-  text-decoration: none;
-  font-size: 11px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
+/* MAIN */
+
+.main{
+  max-width:1100px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:70px;
+  align-items:center;
 }
 
-.booking-layout {
-  max-width: 1180px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 70px;
-  align-items: center;
+.kicker{
+  color:#d59b70;
+  letter-spacing:4px;
+  font-size:12px;
+  margin-bottom:20px;
 }
 
-.event-copy {
-  padding: 30px 0;
+.hero-title{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:clamp(75px,10vw,150px);
+  line-height:.78;
+  font-weight:400;
+  letter-spacing:-7px;
 }
 
-.event-kicker {
-  color: #c58b69;
-  font-size: 11px;
-  letter-spacing: .25em;
-  text-transform: uppercase;
-  margin-bottom: 22px;
+.hero-title span{
+  display:block;
 }
 
-.event-copy h1 {
-  margin: 0;
-  font-family: "Playfair Display", serif;
-  font-size: clamp(70px, 9vw, 145px);
-  font-weight: 400;
-  line-height: .78;
-  letter-spacing: -.055em;
+.description{
+  margin-top:35px;
+  max-width:480px;
+  color:#cdbfb3;
+  line-height:1.7;
+  font-size:15px;
 }
 
-.event-copy h1 span {
-  display: block;
-  margin-left: 80px;
+.event-info{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:25px;
+  margin-top:45px;
 }
 
-.event-description {
-  max-width: 540px;
-  color: var(--cream2);
-  line-height: 1.7;
-  font-size: 14px;
-  margin: 45px 0;
+.info-title{
+  font-size:9px;
+  letter-spacing:3px;
+  color:#a89588;
+  margin-bottom:8px;
 }
 
-.event-meta {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line);
-  padding-top: 22px;
-  max-width: 650px;
+.info-value{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:14px;
 }
 
-.meta-item small {
-  display: block;
-  font-size: 9px;
-  letter-spacing: .22em;
-  color: var(--muted);
-  margin-bottom: 9px;
+/* BOOKING PANEL */
+
+.panel{
+  border:1px solid rgba(236,213,193,.28);
+  border-radius:28px;
+  padding:34px;
+  background:rgba(30,18,14,.72);
+  backdrop-filter:blur(20px);
+  box-shadow:0 30px 80px rgba(0,0,0,.35);
 }
 
-.meta-item strong {
-  font-size: 12px;
-  font-weight: 400;
+.panel h2{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:36px;
+  font-weight:400;
+  margin-bottom:8px;
 }
 
-/* =========================
-   BOOKING FORM
-========================= */
-
-.booking-card {
-  border: 1px solid var(--line);
-  border-radius: 26px;
-  padding: 34px;
-  background: rgba(25,16,12,.72);
-  backdrop-filter: blur(18px);
-  box-shadow: 0 30px 100px rgba(0,0,0,.35);
+.panel-sub{
+  color:#b9a99d;
+  font-size:13px;
+  margin-bottom:28px;
 }
 
-.booking-card h2 {
-  font-family: "Playfair Display", serif;
-  font-size: 42px;
-  font-weight: 400;
-  margin: 0 0 8px;
+.field{
+  margin-bottom:18px;
 }
 
-.booking-card > p {
-  color: var(--muted);
-  font-size: 12px;
-  margin: 0 0 28px;
-}
-
-.field {
-  margin-bottom: 17px;
-}
-
-.field label {
-  display: block;
-  font-size: 9px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--cream2);
-  margin-bottom: 8px;
+.field label{
+  display:block;
+  font-size:9px;
+  letter-spacing:2px;
+  margin-bottom:8px;
+  color:#c7b6a9;
 }
 
 .field input,
-.field select {
-  width: 100%;
-  height: 50px;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: rgba(255,255,255,.035);
-  color: var(--cream);
-  outline: none;
-  padding: 0 15px;
-  font: inherit;
+.field select{
+  width:100%;
+  padding:16px 17px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.18);
+  background:#17110f;
+  color:#f5e9dc;
+  outline:none;
 }
 
 .field input:focus,
-.field select:focus {
-  border-color: rgba(244,233,221,.55);
+.field select:focus{
+  border-color:#c18b65;
 }
 
-.field select option {
-  background: #19100d;
-  color: white;
+.total-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:25px 0 18px;
 }
 
-.total-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  border-top: 1px solid var(--soft-line);
-  margin-top: 7px;
+.total-label{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:17px;
 }
 
-.total-row span:first-child {
-  color: var(--muted);
+.total{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:27px;
 }
 
-.total-row strong {
-  font-family: "Playfair Display", serif;
-  font-size: 30px;
-  font-weight: 400;
+.pay{
+  width:100%;
+  border:0;
+  border-radius:40px;
+  padding:17px;
+  background:#f5ede5;
+  color:#24150f;
+  letter-spacing:2px;
+  font-size:11px;
+  cursor:pointer;
+  transition:.25s;
 }
 
-.pay-button {
-  width: 100%;
-  height: 58px;
-  border: 0;
-  border-radius: 30px;
-  background: var(--cream);
-  color: #1b110d;
-  font-size: 11px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: transform .25s ease, box-shadow .25s ease;
+.pay:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 35px rgba(255,225,205,.18);
 }
 
-.pay-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 35px rgba(0,0,0,.3);
+.status{
+  min-height:18px;
+  margin-top:12px;
+  font-size:11px;
+  color:#cdbeb2;
+  text-align:center;
 }
 
-.pay-button:disabled {
-  opacity: .65;
-  cursor: wait;
+/* CONFIRMATION */
+
+#success{
+  display:none;
+  margin-top:70px;
 }
 
-.status {
-  min-height: 18px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 11px;
-  margin-top: 13px;
+#success.show{
+  display:block;
 }
 
-/* =========================
-   CONFIRMATION
-========================= */
-
-.success {
-  display: none;
-  padding: 35px 15px 80px;
+.confirm-wrapper{
+  max-width:900px;
+  margin:auto;
 }
 
-.success.show {
-  display: block;
+.confirm-heading{
+  text-align:center;
+  margin-bottom:35px;
 }
 
-.confirmation-capture {
-  width: min(850px, 100%);
-  margin: auto;
-  padding: 55px 40px 42px;
-  border: 1px solid rgba(244,233,221,.18);
-  border-radius: 32px;
-  overflow: hidden;
-  position: relative;
+.check{
+  width:72px;
+  height:72px;
+  border:2px solid #f3e8dc;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:0 auto 25px;
+  font-size:38px;
+}
 
+.confirm-heading h1{
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:400;
+  font-size:clamp(50px,7vw,80px);
+  line-height:1;
+}
+
+.confirm-heading p{
+  margin-top:20px;
+  letter-spacing:5px;
+  font-size:11px;
+  line-height:2;
+}
+
+/* CARD TO SAVE */
+
+.confirm-card{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(238,214,193,.35);
+  border-radius:30px;
   background:
-    radial-gradient(circle at 12% 10%, rgba(160,105,71,.27), transparent 25%),
-    radial-gradient(circle at 90% 42%, rgba(143,76,42,.24), transparent 28%),
-    radial-gradient(circle at 55% 90%, rgba(92,54,36,.25), transparent 30%),
-    linear-gradient(135deg, #100a07, #25140e 52%, #0e0907);
-
-  box-shadow:
-    0 50px 120px rgba(0,0,0,.6),
-    inset 0 0 100px rgba(0,0,0,.18);
+    radial-gradient(circle at 75% 20%,rgba(140,75,40,.5),transparent 25%),
+    radial-gradient(circle at 15% 90%,rgba(105,55,32,.35),transparent 30%),
+    linear-gradient(135deg,#120907,#29130d 55%,#100806);
+  padding:45px;
+  box-shadow:0 30px 90px rgba(0,0,0,.5);
 }
 
-.confirmation-capture::before {
-  content: "";
-  position: absolute;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: rgba(142,86,53,.12);
-  filter: blur(60px);
-  top: -80px;
-  left: -80px;
+.confirm-card:before{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  border-radius:50%;
+  border:1px solid rgba(220,180,150,.13);
+  right:-120px;
+  top:-100px;
 }
 
-.confirmation-capture::after {
-  content: "";
-  position: absolute;
-  width: 330px;
-  height: 330px;
-  border-radius: 50%;
-  background: rgba(118,68,39,.12);
-  filter: blur(70px);
-  bottom: -120px;
-  right: -90px;
+.card-brand{
+  text-align:center;
+  letter-spacing:7px;
+  font-size:12px;
+  margin-bottom:35px;
 }
 
-.confirmation-header {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-}
-
-.confirmation-brand {
-  font-size: 11px;
-  letter-spacing: .42em;
-  text-transform: uppercase;
-  margin-bottom: 34px;
-}
-
-.check-circle {
-  width: 78px;
-  height: 78px;
-  border: 2px solid var(--cream);
-  border-radius: 50%;
-  margin: 0 auto 25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 43px;
-  line-height: 1;
-}
-
-.confirmation-header h1 {
-  margin: 0;
-  font-family: "Playfair Display", serif;
-  font-weight: 400;
-  font-size: clamp(48px, 7vw, 82px);
-  letter-spacing: -.04em;
-}
-
-.confirmation-subtitle {
-  margin: 17px auto 42px;
-  max-width: 560px;
-  font-size: 12px;
-  letter-spacing: .34em;
-  line-height: 2;
-  text-transform: uppercase;
-  color: var(--cream2);
-}
-
-/* Main ticket */
-
-.ticket {
-  position: relative;
-  z-index: 2;
-  border: 1px solid rgba(244,233,221,.27);
-  border-radius: 27px;
-  overflow: hidden;
+.card-event{
+  border:1px solid rgba(238,214,193,.35);
+  border-radius:24px;
+  overflow:hidden;
   background:
-    radial-gradient(circle at 82% 24%, rgba(170,100,58,.20), transparent 22%),
-    radial-gradient(circle at 95% 80%, rgba(116,72,46,.25), transparent 28%),
-    linear-gradient(135deg, rgba(16,10,8,.92), rgba(39,22,15,.92));
-  box-shadow: 0 30px 70px rgba(0,0,0,.38);
+    radial-gradient(circle at 80% 20%,rgba(120,70,40,.35),transparent 30%),
+    #110908;
 }
 
-/* Decorative visual area */
-
-.ticket-top {
-  min-height: 300px;
-  padding: 42px 42px 25px;
-  position: relative;
-  overflow: hidden;
+.card-top{
+  padding:40px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:400px;
 }
 
-.ticket-top::before {
-  content: "";
-  position: absolute;
-  width: 270px;
-  height: 270px;
-  right: -25px;
-  top: 0;
-  border-radius: 50%;
-  border: 1px solid rgba(244,233,221,.09);
+.card-left{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.her-title{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:78px;
+  line-height:.78;
+  letter-spacing:-5px;
+}
+
+.byline{
+  margin-top:20px;
+  letter-spacing:3px;
+  font-size:10px;
+}
+
+.card-details{
+  margin-top:55px;
+}
+
+.detail{
+  display:flex;
+  gap:18px;
+  margin-bottom:25px;
+  align-items:flex-start;
+}
+
+.detail-icon{
+  width:32px;
+  height:32px;
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+  flex-shrink:0;
+}
+
+.detail-label{
+  font-size:9px;
+  letter-spacing:3px;
+  color:#b7a69a;
+  margin-bottom:6px;
+}
+
+.detail-value{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:21px;
+}
+
+.detail-small{
+  font-size:10px;
+  letter-spacing:3px;
+  margin-top:5px;
+}
+
+.card-art{
+  position:relative;
+  min-height:350px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.art-circle{
+  width:260px;
+  height:260px;
+  border-radius:50%;
+  border:1px solid rgba(220,180,150,.25);
   box-shadow:
-    0 0 0 25px rgba(244,233,221,.025),
-    0 0 0 55px rgba(244,233,221,.018);
+    0 0 0 35px rgba(150,90,55,.08),
+    0 0 0 70px rgba(150,90,55,.04);
 }
 
-.ticket-top::after {
-  content: "✦";
-  position: absolute;
-  top: 46px;
-  left: 265px;
-  font-size: 34px;
-  color: var(--cream);
-  opacity: .9;
+.girls{
+  position:absolute;
+  top:20px;
+  right:0;
+  letter-spacing:4px;
+  font-size:9px;
+  line-height:1.7;
+  text-align:right;
 }
 
-.her-hour-title {
-  position: relative;
-  z-index: 2;
-  font-family: "Playfair Display", serif;
-  font-size: clamp(68px, 9vw, 105px);
-  line-height: .78;
-  letter-spacing: -.07em;
-  font-weight: 400;
+.card-bottom{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border:1px solid rgba(238,214,193,.3);
+  border-radius:18px;
+  margin:0 40px 25px;
+  overflow:hidden;
 }
 
-.her-hour-title span {
-  display: block;
+.bottom-box{
+  padding:22px 25px;
 }
 
-.by-tch {
-  position: relative;
-  z-index: 2;
-  margin-top: 22px;
-  font-size: 10px;
-  letter-spacing: .3em;
-  text-transform: uppercase;
-  color: var(--cream2);
+.bottom-box + .bottom-box{
+  border-left:1px solid rgba(238,214,193,.3);
 }
 
-.girls-night {
-  position: absolute;
-  z-index: 3;
-  top: 45px;
-  right: 38px;
-  font-size: 10px;
-  letter-spacing: .22em;
-  line-height: 1.7;
-  text-align: right;
-  text-transform: uppercase;
+.bottom-label{
+  font-size:9px;
+  letter-spacing:3px;
+  color:#b8a79b;
+  margin-bottom:8px;
 }
 
-.girls-night::after {
-  content: "";
-  display: block;
-  width: 50px;
-  height: 1px;
-  background: var(--cream2);
-  margin: 8px 0 0 auto;
+.bottom-value{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:25px;
 }
 
-/* Cocktail decoration */
-
-.cocktail {
-  position: absolute;
-  right: 100px;
-  bottom: -25px;
-  width: 120px;
-  height: 150px;
-  opacity: .75;
+.green-confirm{
+  margin:0 40px 25px;
+  padding:20px 24px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#164c36,#246447);
+  border:1px solid rgba(190,255,220,.2);
+  display:flex;
+  align-items:center;
+  gap:18px;
 }
 
-.cocktail-glass {
-  position: absolute;
-  width: 100px;
-  height: 60px;
-  border: 2px solid rgba(244,233,221,.42);
-  border-top: 0;
-  transform: skewX(-12deg);
-  border-radius: 0 0 45px 45px;
+.green-check{
+  width:46px;
+  height:46px;
+  border:2px solid #f0fff6;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  flex-shrink:0;
 }
 
-.cocktail-stem {
-  position: absolute;
-  width: 2px;
-  height: 85px;
-  background: rgba(244,233,221,.35);
-  left: 50px;
-  top: 55px;
+.green-title{
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:bold;
+  margin-bottom:7px;
 }
 
-.cocktail-base {
-  position: absolute;
-  width: 80px;
-  height: 2px;
-  background: rgba(244,233,221,.35);
-  left: 10px;
-  bottom: 4px;
+.green-text{
+  font-size:12px;
+  color:#d8eee2;
+  line-height:1.5;
 }
 
-.cocktail-bow {
-  position: absolute;
-  right: 0;
-  top: 74px;
-  font-size: 45px;
-  color: #c99078;
+.qr-section{
+  margin:0 40px 35px;
+  padding:25px;
+  border:1px solid rgba(238,214,193,.3);
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  gap:30px;
 }
 
-/* Event details */
-
-.event-details {
-  padding: 10px 42px 30px;
+#qrcode{
+  width:110px;
+  height:110px;
+  background:#fff;
+  padding:7px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
 }
 
-.detail {
-  display: grid;
-  grid-template-columns: 45px 1fr;
-  gap: 14px;
-  margin-bottom: 24px;
+#qrcode img{
+  max-width:100%;
 }
 
-.detail-icon {
-  width: 34px;
-  height: 34px;
-  border: 1px solid rgba(244,233,221,.55);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
+.qr-label{
+  font-size:9px;
+  letter-spacing:3px;
+  margin-bottom:10px;
 }
 
-.detail small {
-  display: block;
-  font-size: 9px;
-  letter-spacing: .25em;
-  color: var(--muted);
-  margin-bottom: 6px;
+.qr-description{
+  font-size:11px;
+  color:#bbaea5;
+  margin-bottom:14px;
 }
 
-.detail strong {
-  display: block;
-  font-family: "Playfair Display", serif;
-  font-size: 22px;
-  font-weight: 400;
+.qr-id{
+  border-top:1px solid rgba(238,214,193,.25);
+  padding-top:12px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:20px;
 }
 
-.detail span {
-  color: var(--cream2);
-  font-size: 10px;
-  letter-spacing: .25em;
-  text-transform: uppercase;
+.card-footer{
+  text-align:center;
+  letter-spacing:5px;
+  font-size:10px;
+  color:#b9aaa0;
+  padding-bottom:25px;
 }
 
-/* Ticket row */
-
-.ticket-info {
-  margin: 5px 42px 22px;
-  border: 1px solid rgba(244,233,221,.25);
-  border-radius: 18px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  overflow: hidden;
+.signature{
+  text-align:right;
+  padding:0 40px 35px;
+  font-family:cursive;
+  font-size:34px;
+  color:#ead6c5;
 }
 
-.ticket-info-block {
-  padding: 23px 25px;
+.actions{
+  display:flex;
+  gap:15px;
+  margin-top:25px;
 }
 
-.ticket-info-block + .ticket-info-block {
-  border-left: 1px solid rgba(244,233,221,.22);
+.action{
+  flex:1;
+  border-radius:12px;
+  padding:17px;
+  cursor:pointer;
+  letter-spacing:2px;
+  font-size:11px;
 }
 
-.ticket-info-block small {
-  display: block;
-  font-size: 9px;
-  letter-spacing: .25em;
-  color: var(--muted);
-  margin-bottom: 9px;
+.save{
+  background:#f3e9df;
+  color:#1a0e0a;
+  border:0;
 }
 
-.ticket-info-block strong {
-  font-family: "Playfair Display", serif;
-  font-size: 27px;
-  font-weight: 400;
+.share{
+  background:transparent;
+  color:#f3e9df;
+  border:1px solid rgba(255,255,255,.5);
 }
 
-/* Green confirmation */
-
-.confirmed-box {
-  margin: 0 42px 22px;
-  padding: 20px 22px;
-  border: 1px solid rgba(150,190,165,.24);
-  background: linear-gradient(135deg, rgba(25,51,40,.9), rgba(16,33,26,.9));
-  border-radius: 18px;
-  display: flex;
-  gap: 17px;
-  align-items: flex-start;
+.footer{
+  text-align:center;
+  margin-top:55px;
+  letter-spacing:5px;
+  font-size:10px;
+  color:#93847a;
 }
 
-.confirmed-icon {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(244,255,247,.65);
-  border-radius: 50%;
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-}
+/* MOBILE */
 
-.confirmed-box strong {
-  display: block;
-  font-size: 11px;
-  letter-spacing: .25em;
-  margin-bottom: 8px;
-}
+@media(max-width:800px){
 
-.confirmed-box p {
-  margin: 0;
-  color: #b7c7bd;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-/* QR */
-
-.qr-box {
-  margin: 0 42px 22px;
-  padding: 22px;
-  border: 1px solid rgba(244,233,221,.24);
-  border-radius: 18px;
-  display: grid;
-  grid-template-columns: 130px 1fr;
-  gap: 25px;
-  align-items: center;
-}
-
-.qr {
-  width: 120px;
-  height: 120px;
-  padding: 8px;
-  background: white;
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.qr img,
-.qr canvas {
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.qr-copy small {
-  display: block;
-  font-size: 9px;
-  letter-spacing: .28em;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-
-.qr-copy p {
-  color: var(--cream2);
-  font-size: 11px;
-  line-height: 1.6;
-  margin: 0 0 17px;
-}
-
-.qr-code-text {
-  border-top: 1px solid rgba(244,233,221,.2);
-  padding-top: 13px;
-  font-size: 17px;
-  letter-spacing: .12em;
-}
-
-/* Buttons */
-
-.confirm-actions {
-  position: relative;
-  z-index: 3;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin: 25px 42px 0;
-}
-
-.confirm-actions button {
-  height: 60px;
-  border-radius: 15px;
-  font: inherit;
-  font-size: 10px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: .25s ease;
-}
-
-.save-btn {
-  border: 0;
-  background: var(--cream);
-  color: #1b110d;
-}
-
-.share-btn {
-  border: 1px solid rgba(244,233,221,.5);
-  background: transparent;
-  color: var(--cream);
-}
-
-.confirm-actions button:hover {
-  transform: translateY(-2px);
-}
-
-.confirm-actions button:disabled {
-  opacity: .6;
-  cursor: wait;
-}
-
-/* Footer */
-
-.confirm-footer {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  padding-top: 37px;
-}
-
-.confirm-footer strong {
-  display: block;
-  font-size: 11px;
-  letter-spacing: .42em;
-}
-
-.confirm-footer span {
-  display: block;
-  margin-top: 12px;
-  color: var(--muted);
-  font-size: 9px;
-  letter-spacing: .3em;
-}
-
-.see-you {
-  font-family: "Allura", cursive;
-  font-size: 43px;
-  transform: rotate(-5deg);
-  margin-top: 8px;
-  color: #d4b19d;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 850px) {
-
-  .booking-layout {
-    grid-template-columns: 1fr;
-    gap: 30px;
+  .page{
+    padding:25px 15px 50px;
   }
 
-  .event-copy {
-    text-align: center;
+  .top{
+    margin-bottom:45px;
   }
 
-  .event-copy h1 {
-    font-size: 80px;
+  .main{
+    grid-template-columns:1fr;
+    gap:45px;
   }
 
-  .event-copy h1 span {
-    margin-left: 0;
+  .hero-title{
+    font-size:82px;
   }
 
-  .event-description {
-    margin-left: auto;
-    margin-right: auto;
+  .event-info{
+    grid-template-columns:1fr 1fr;
+    gap:20px;
   }
 
-  .event-meta {
-    margin: auto;
-  }
-}
-
-@media (max-width: 600px) {
-
-  .booking-page {
-    padding: 20px 14px 50px;
+  .panel{
+    padding:25px;
   }
 
-  .top-nav {
-    margin-bottom: 30px;
+  .confirm-card{
+    padding:25px;
   }
 
-  .brand {
-    font-size: 9px;
-    letter-spacing: .3em;
+  .card-top{
+    grid-template-columns:1fr;
+    padding:25px;
   }
 
-  .event-copy h1 {
-    font-size: 64px;
+  .her-title{
+    font-size:62px;
   }
 
-  .event-meta {
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+  .card-art{
+    min-height:250px;
+    margin-top:30px;
   }
 
-  .booking-card {
-    padding: 25px 20px;
+  .card-bottom{
+    margin:0 20px 20px;
   }
 
-  .booking-card h2 {
-    font-size: 35px;
+  .bottom-box{
+    padding:16px;
   }
 
-  .success {
-    padding: 20px 0 50px;
+  .bottom-value{
+    font-size:18px;
   }
 
-  .confirmation-capture {
-    padding: 35px 14px 28px;
-    border-radius: 22px;
+  .green-confirm{
+    margin:0 20px 20px;
   }
 
-  .confirmation-brand {
-    font-size: 8px;
-    letter-spacing: .28em;
+  .qr-section{
+    margin:0 20px 25px;
   }
 
-  .confirmation-header h1 {
-    font-size: 48px;
+  .signature{
+    padding-right:20px;
   }
 
-  .confirmation-subtitle {
-    font-size: 8px;
-    letter-spacing: .22em;
-    margin-bottom: 30px;
+  .actions{
+    flex-direction:column;
   }
-
-  .ticket-top {
-    min-height: 250px;
-    padding: 30px 25px 20px;
-  }
-
-  .her-hour-title {
-    font-size: 67px;
-  }
-
-  .girls-night {
-    right: 20px;
-    top: 32px;
-    font-size: 8px;
-  }
-
-  .ticket-top::after {
-    left: 190px;
-    top: 35px;
-  }
-
-  .cocktail {
-    right: 50px;
-    transform: scale(.8);
-  }
-
-  .event-details {
-    padding: 5px 25px 25px;
-  }
-
-  .detail strong {
-    font-size: 18px;
-  }
-
-  .ticket-info,
-  .confirmed-box,
-  .qr-box {
-    margin-left: 25px;
-    margin-right: 25px;
-  }
-
-  .ticket-info-block {
-    padding: 18px 15px;
-  }
-
-  .ticket-info-block strong {
-    font-size: 19px;
-  }
-
-  .confirmed-box {
-    padding: 17px;
-  }
-
-  .qr-box {
-    grid-template-columns: 95px 1fr;
-    gap: 15px;
-    padding: 15px;
-  }
-
-  .qr {
-    width: 90px;
-    height: 90px;
-  }
-
-  .qr-code-text {
-    font-size: 13px;
-  }
-
-  .confirm-actions {
-    margin-left: 25px;
-    margin-right: 25px;
-    grid-template-columns: 1fr;
-  }
-
-  .confirm-footer strong {
-    font-size: 9px;
-  }
-}
-
-/* Hide booking page once payment succeeds */
-
-body.confirmed .booking-page {
-  display: none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     BOOKING PAGE
-========================= -->
+<div class="page">
 
-<section class="booking-page">
+<header class="top">
+  <div class="logo">THE COLLECTIVE HOUSE</div>
 
-  <nav class="top-nav">
-    <div class="brand">The Collective House</div>
-    <a href="index.html" class="back">← Back to the House</a>
-  </nav>
+  <div class="nav">
+    EVENTS<br>
+    PEOPLE<br>
+    CULTURE
+  </div>
+</header>
 
-  <div class="booking-layout">
+<main class="main">
 
-    <div class="event-copy">
+<section>
 
-      <div class="event-kicker">
-        A TCH EXPERIENCE · 24 OCTOBER 2026
-      </div>
+  <div class="kicker">
+    A TCH EXPERIENCE · 24 OCTOBER 2026
+  </div>
 
-      <h1>
-        HER
-        <span>HOUR.</span>
-      </h1>
+  <h1 class="hero-title">
+    <span>HER</span>
+    <span>HOUR.</span>
+  </h1>
 
-      <p class="event-description">
-        An evening for women to connect, celebrate, meet new people
-        and enjoy a room designed around good energy.
-      </p>
+  <p class="description">
+    An evening for women to connect, celebrate, meet new people
+    and enjoy a room designed around good energy.
+  </p>
 
-      <div class="event-meta">
+  <div class="event-info">
 
-        <div class="meta-item">
-          <small>VENUE</small>
-          <strong>Bizou Cafe & Grill</strong>
-        </div>
-
-        <div class="meta-item">
-          <small>TIME</small>
-          <strong>6:00 PM onwards</strong>
-        </div>
-
-        <div class="meta-item">
-          <small>TICKET</small>
-          <strong>₹2,000 / person</strong>
-        </div>
-
-        <div class="meta-item">
-          <small>INCLUDES</small>
-          <strong>Refreshments</strong>
-        </div>
-
-      </div>
-
+    <div>
+      <div class="info-title">VENUE</div>
+      <div class="info-value">Bizou Cafe & Grill</div>
     </div>
 
-    <div class="booking-card">
+    <div>
+      <div class="info-title">TIME</div>
+      <div class="info-value">6:00 PM onwards</div>
+    </div>
 
-      <h2>Reserve your spot.</h2>
+    <div>
+      <div class="info-title">TICKET</div>
+      <div class="info-value">₹2,000 / person</div>
+    </div>
 
-      <p>
-        Choose your tickets and continue to secure payment.
-      </p>
-
-      <form id="f">
-
-        <div class="field">
-          <label for="name">Full Name</label>
-          <input id="name" required autocomplete="name">
-        </div>
-
-        <div class="field">
-          <label for="phone">WhatsApp Number</label>
-          <input
-            id="phone"
-            required
-            inputmode="tel"
-            autocomplete="tel"
-          >
-        </div>
-
-        <div class="field">
-          <label for="email">Email Address</label>
-          <input
-            id="email"
-            required
-            type="email"
-            autocomplete="email"
-          >
-        </div>
-
-        <div class="field">
-          <label for="tickets">Number of Tickets</label>
-
-          <select id="tickets" required>
-            <option value="1">1 ticket — ₹1</option>
-            <option value="2">2 tickets — ₹2</option>
-            <option value="3">3 tickets — ₹3</option>
-            <option value="4">4 tickets — ₹4</option>
-          </select>
-        </div>
-
-        <div class="total-row">
-          <span>Total</span>
-          <strong id="total">₹1</strong>
-        </div>
-
-        <button class="pay-button" type="submit">
-          Continue to secure payment →
-        </button>
-
-        <div id="status" class="status"></div>
-
-      </form>
-
+    <div>
+      <div class="info-title">INCLUDES</div>
+      <div class="info-value">Refreshments</div>
     </div>
 
   </div>
 
 </section>
 
+<section class="panel">
 
-<!-- =========================
-     SUCCESS
-========================= -->
+  <h2>Reserve your spot.</h2>
 
-<section id="success" class="success">
+  <p class="panel-sub">
+    Choose your tickets and continue to secure payment.
+  </p>
 
-  <div id="confirmation-card" class="confirmation-capture">
+  <form id="f">
 
-    <div class="confirmation-header">
+    <div class="field">
+      <label>FULL NAME</label>
+      <input id="name" required>
+    </div>
 
-      <div class="confirmation-brand">
-        THE COLLECTIVE HOUSE
+    <div class="field">
+      <label>WHATSAPP NUMBER</label>
+      <input id="phone" required inputmode="tel">
+    </div>
+
+    <div class="field">
+      <label>EMAIL ADDRESS</label>
+      <input id="email" required type="email">
+    </div>
+
+    <div class="field">
+      <label>NUMBER OF TICKETS</label>
+
+      <select id="tickets">
+
+        <option value="1">
+          1 ticket — ₹2,000
+        </option>
+
+        <option value="2">
+          2 tickets — ₹4,000
+        </option>
+
+        <option value="3">
+          3 tickets — ₹6,000
+        </option>
+
+        <option value="4">
+          4 tickets — ₹8,000
+        </option>
+
+      </select>
+    </div>
+
+    <div class="total-row">
+
+      <div class="total-label">
+        Total
       </div>
 
-      <div class="check-circle">✓</div>
-
-      <h1>Payment Successful</h1>
-
-      <div class="confirmation-subtitle">
-        YOUR BOOKING FOR HER HOUR BY TCH<br>
-        IS CONFIRMED.
+      <div class="total" id="total">
+        ₹1
       </div>
 
     </div>
 
+    <button class="pay" type="submit">
+      CONTINUE TO SECURE PAYMENT →
+    </button>
 
-    <!-- MAIN TICKET -->
+    <div class="status" id="status"></div>
 
-    <div class="ticket">
+  </form>
 
-      <div class="ticket-top">
+</section>
 
-        <div class="her-hour-title">
-          <span>HER</span>
-          <span>HOUR</span>
-        </div>
-
-        <div class="by-tch">
-          BY THE COLLECTIVE HOUSE
-        </div>
-
-        <div class="girls-night">
-          GIRLS<br>
-          NIGHT<br>
-          OUT
-        </div>
-
-        <div class="cocktail">
-          <div class="cocktail-glass"></div>
-          <div class="cocktail-stem"></div>
-          <div class="cocktail-base"></div>
-          <div class="cocktail-bow">⌁</div>
-        </div>
-
-      </div>
+</main>
 
 
-      <!-- DETAILS -->
+<!-- SUCCESS -->
 
-      <div class="event-details">
+<section id="success">
 
-        <div class="detail">
+<div class="confirm-wrapper">
 
-          <div class="detail-icon">□</div>
+  <div class="confirm-heading">
+
+    <div class="check">
+      ✓
+    </div>
+
+    <h1>
+      Payment Successful
+    </h1>
+
+    <p>
+      YOUR BOOKING FOR HER HOUR BY TCH<br>
+      IS CONFIRMED.
+    </p>
+
+  </div>
+
+
+  <!-- THIS ENTIRE ELEMENT BECOMES THE IMAGE -->
+
+  <div class="confirm-card" id="confirmation-card">
+
+    <div class="card-brand">
+      THE COLLECTIVE HOUSE
+    </div>
+
+    <div class="card-event">
+
+      <div class="card-top">
+
+        <div class="card-left">
 
           <div>
-            <small>DATE</small>
-            <strong>24 OCTOBER 2026</strong>
-            <span>Saturday</span>
+
+            <div class="her-title">
+              HER<br>
+              HOUR
+            </div>
+
+            <div class="byline">
+              BY THE COLLECTIVE HOUSE
+            </div>
+
+          </div>
+
+
+          <div class="card-details">
+
+            <div class="detail">
+
+              <div class="detail-icon">
+                ◫
+              </div>
+
+              <div>
+
+                <div class="detail-label">
+                  DATE
+                </div>
+
+                <div class="detail-value">
+                  24 OCTOBER 2026
+                </div>
+
+                <div class="detail-small">
+                  SATURDAY
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="detail">
+
+              <div class="detail-icon">
+                ◷
+              </div>
+
+              <div>
+
+                <div class="detail-label">
+                  TIME
+                </div>
+
+                <div class="detail-value">
+                  6:00 PM ONWARDS
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="detail">
+
+              <div class="detail-icon">
+                ✦
+              </div>
+
+              <div>
+
+                <div class="detail-label">
+                  VENUE
+                </div>
+
+                <div class="detail-value">
+                  BIZOU CAFE & GRILL
+                </div>
+
+                <div class="detail-small">
+                  COIMBATORE
+                </div>
+
+              </div>
+
+            </div>
+
           </div>
 
         </div>
 
 
-        <div class="detail">
+        <div class="card-art">
 
-          <div class="detail-icon">◷</div>
+          <div class="art-circle"></div>
 
-          <div>
-            <small>TIME</small>
-            <strong>6:00 PM ONWARDS</strong>
-          </div>
-
-        </div>
-
-
-        <div class="detail">
-
-          <div class="detail-icon">⌖</div>
-
-          <div>
-            <small>VENUE</small>
-            <strong>BIZOU CAFE & GRILL</strong>
-            <span>Coimbatore</span>
+          <div class="girls">
+            GIRLS<br>
+            NIGHT<br>
+            OUT
           </div>
 
         </div>
@@ -1147,62 +914,27 @@ body.confirmed .booking-page {
       </div>
 
 
-      <!-- TICKET INFORMATION -->
+      <div class="card-bottom">
 
-      <div class="ticket-info">
+        <div class="bottom-box">
 
-        <div class="ticket-info-block">
-          <small>TICKETS</small>
-          <strong id="confirm-tickets">1 TICKET</strong>
-        </div>
+          <div class="bottom-label">
+            TICKETS
+          </div>
 
-        <div class="ticket-info-block">
-          <small>BOOKING ID</small>
-          <strong id="confirm-booking">HH-XXXXXX</strong>
-        </div>
-
-      </div>
-
-
-      <!-- CONFIRMATION MESSAGE -->
-
-      <div class="confirmed-box">
-
-        <div class="confirmed-icon">✓</div>
-
-        <div>
-
-          <strong>
-            YOUR BOOKING IS CONFIRMED
-          </strong>
-
-          <p>
-            Your payment has been successful and
-            your details have been recorded in our
-            guest list. Keep this confirmation for entry.
-          </p>
+          <div class="bottom-value" id="confirm-tickets">
+            1 TICKET
+          </div>
 
         </div>
 
-      </div>
+        <div class="bottom-box">
 
+          <div class="bottom-label">
+            BOOKING ID
+          </div>
 
-      <!-- QR -->
-
-      <div class="qr-box">
-
-        <div id="qr" class="qr"></div>
-
-        <div class="qr-copy">
-
-          <small>ENTRY QR CODE</small>
-
-          <p>
-            Show this at the venue for faster
-            check-in.
-          </p>
-
-          <div id="qr-code-text" class="qr-code-text">
+          <div class="bottom-value" id="confirm-booking">
             HH-XXXXXX
           </div>
 
@@ -1211,44 +943,58 @@ body.confirmed .booking-page {
       </div>
 
 
-      <!-- ACTIONS -->
+      <div class="green-confirm">
 
-      <div class="confirm-actions">
+        <div class="green-check">
+          ✓
+        </div>
 
-        <button
-          type="button"
-          id="saveConfirmation"
-          class="save-btn"
-        >
-          ↓ &nbsp; SAVE CONFIRMATION
-        </button>
+        <div>
 
-        <button
-          type="button"
-          id="shareConfirmation"
-          class="share-btn"
-        >
-          ↗ &nbsp; SHARE
-        </button>
+          <div class="green-title">
+            YOUR BOOKING IS CONFIRMED
+          </div>
+
+          <div class="green-text">
+            Your payment has been successful and your
+            details have been recorded in our guest list.
+            Keep this confirmation for entry.
+          </div>
+
+        </div>
 
       </div>
 
-    </div>
+
+      <div class="qr-section">
+
+        <div id="qrcode"></div>
+
+        <div>
+
+          <div class="qr-label">
+            ENTRY QR CODE
+          </div>
+
+          <div class="qr-description">
+            Show this at the venue for faster check-in.
+          </div>
+
+          <div class="qr-id" id="qr-booking">
+            HH-XXXXXX
+          </div>
+
+        </div>
+
+      </div>
 
 
-    <!-- FOOTER -->
+      <div class="card-footer">
+        THE COLLECTIVE HOUSE<br><br>
+        EVENTS — PEOPLE — CULTURE
+      </div>
 
-    <div class="confirm-footer">
-
-      <strong>
-        THE COLLECTIVE HOUSE
-      </strong>
-
-      <span>
-        EVENTS &nbsp; — &nbsp; PEOPLE &nbsp; — &nbsp; CULTURE
-      </span>
-
-      <div class="see-you">
+      <div class="signature">
         See you there! ♡
       </div>
 
@@ -1256,22 +1002,40 @@ body.confirmed .booking-page {
 
   </div>
 
+
+  <div class="actions">
+
+    <button
+      class="action save"
+      id="save-confirmation"
+      type="button">
+      ↓ &nbsp; SAVE CONFIRMATION
+    </button>
+
+    <button
+      class="action share"
+      id="share-confirmation"
+      type="button">
+      ↗ &nbsp; SHARE
+    </button>
+
+  </div>
+
+</div>
+
 </section>
+
+
+<div class="footer">
+  THE COLLECTIVE HOUSE
+</div>
+
+</div>
 
 
 <script>
 
-/* =========================================
-   TEST PRICE
-   KEEP THIS AT 1 FOR NOW
-========================================= */
-
-const p = 2000;
-
-
-/* =========================================
-   FORM ELEMENTS
-========================================= */
+const p = 2000; // KEEP ₹1 FOR TESTING
 
 const t = document.getElementById('tickets');
 
@@ -1290,34 +1054,35 @@ const form =
 const status =
   document.getElementById('status');
 
-
-/* =========================================
-   PRICE UPDATE
-========================================= */
-
-t.addEventListener('change', () => {
-
-  const total =
-    Number(t.value) * p;
-
-  document.getElementById('total').textContent =
-    '₹' + total.toLocaleString('en-IN');
-
-});
+const total =
+  document.getElementById('total');
 
 
-/* =========================================
-   SUBMIT
-========================================= */
+/* UPDATE TEST TOTAL */
 
-form.addEventListener('submit', async (e) => {
+function updateTotal(){
+
+  total.textContent =
+    '₹' +
+    (Number(t.value) * p).toLocaleString('en-IN');
+
+}
+
+t.addEventListener('change', updateTotal);
+
+updateTotal();
+
+
+/* PAYMENT */
+
+form.addEventListener('submit', async function(e){
 
   e.preventDefault();
 
   status.textContent =
     'Preparing secure payment…';
 
-  try {
+  try{
 
     const data = {
 
@@ -1339,16 +1104,12 @@ form.addEventListener('submit', async (e) => {
     };
 
 
-    /* ==========================
-       CREATE RAZORPAY ORDER
-    ========================== */
-
     const response =
-      await fetch('/api/create-order', {
+      await fetch('/api/create-order',{
 
-        method: 'POST',
+        method:'POST',
 
-        headers: {
+        headers:{
           'Content-Type':
             'application/json'
         },
@@ -1363,7 +1124,7 @@ form.addEventListener('submit', async (e) => {
       await response.json();
 
 
-    if (!response.ok) {
+    if(!response.ok){
 
       throw new Error(
         order.error ||
@@ -1373,25 +1134,14 @@ form.addEventListener('submit', async (e) => {
     }
 
 
-    /* ==========================
-       CHECK RAZORPAY LOADED
-    ========================== */
-
-    if (
-      typeof Razorpay ===
-      'undefined'
-    ) {
+    if(typeof Razorpay === 'undefined'){
 
       throw new Error(
-        'Razorpay could not be loaded. Please try again.'
+        'Razorpay could not be loaded. Please refresh and try again.'
       );
 
     }
 
-
-    /* ==========================
-       RAZORPAY CHECKOUT
-    ========================== */
 
     const options = {
 
@@ -1413,7 +1163,7 @@ form.addEventListener('submit', async (e) => {
       order_id:
         order.orderId || order.id,
 
-      prefill: {
+      prefill:{
 
         name:
           data.name,
@@ -1426,56 +1176,45 @@ form.addEventListener('submit', async (e) => {
 
       },
 
-      theme: {
-        color:
-          '#9a5037'
+      theme:{
+        color:'#9a5037'
       },
 
 
       handler:
-        async function(payment) {
+        async function(payment){
 
           status.textContent =
             'Confirming your booking…';
 
 
-          /* ==========================
-             VERIFY PAYMENT
-          ========================== */
-
           const verifyResponse =
-            await fetch(
-              '/api/verify-payment',
-              {
+            await fetch('/api/verify-payment',{
 
-                method: 'POST',
+              method:'POST',
 
-                headers: {
-                  'Content-Type':
-                    'application/json'
-                },
+              headers:{
+                'Content-Type':
+                  'application/json'
+              },
 
-                body:
-                  JSON.stringify({
+              body:
+                JSON.stringify({
 
-                    ...payment,
+                  ...payment,
 
-                    ...data
+                  ...data
 
-                  })
+                })
 
-              }
-            );
+            });
 
 
           const result =
             await verifyResponse.json();
 
 
-          if (
-            !verifyResponse.ok ||
-            !result.verified
-          ) {
+          if(!result.verified){
 
             throw new Error(
               result.error ||
@@ -1485,9 +1224,7 @@ form.addEventListener('submit', async (e) => {
           }
 
 
-          /* ==========================
-             BOOKING ID
-          ========================== */
+          /* BOOKING ID */
 
           const bookingId =
             'HH-' +
@@ -1496,19 +1233,13 @@ form.addEventListener('submit', async (e) => {
               .toUpperCase();
 
 
-          /* ==========================
-             POPULATE CONFIRMATION
-          ========================== */
-
           document.getElementById(
             'confirm-tickets'
           ).textContent =
             data.tickets +
-            (
-              data.tickets === 1
-                ? ' TICKET'
-                : ' TICKETS'
-            );
+            (data.tickets === 1
+              ? ' TICKET'
+              : ' TICKETS');
 
 
           document.getElementById(
@@ -1518,36 +1249,31 @@ form.addEventListener('submit', async (e) => {
 
 
           document.getElementById(
-            'qr-code-text'
+            'qr-booking'
           ).textContent =
             bookingId;
 
 
-          /* ==========================
-             CREATE QR
-          ========================== */
+          /* CREATE QR */
 
           const qr =
-            document.getElementById('qr');
+            document.getElementById('qrcode');
 
           qr.innerHTML = '';
 
-          new QRCode(qr, {
+
+          new QRCode(qr,{
 
             text:
               bookingId,
 
-            width:
-              104,
+            width:96,
 
-            height:
-              104,
+            height:96,
 
-            colorDark:
-              '#111111',
+            colorDark:'#111111',
 
-            colorLight:
-              '#ffffff',
+            colorLight:'#ffffff',
 
             correctLevel:
               QRCode.CorrectLevel.H
@@ -1555,23 +1281,19 @@ form.addEventListener('submit', async (e) => {
           });
 
 
-          /* ==========================
-             SHOW CONFIRMATION
-          ========================== */
-
-          document.body.classList.add(
-            'confirmed'
-          );
+          /* SHOW SUCCESS */
 
           document.getElementById(
             'success'
           ).classList.add('show');
 
+
           status.textContent = '';
 
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+          document.getElementById(
+            'success'
+          ).scrollIntoView({
+            behavior:'smooth'
           });
 
         }
@@ -1585,10 +1307,10 @@ form.addEventListener('submit', async (e) => {
 
     razorpay.on(
       'payment.failed',
-      function() {
+      function(){
 
         status.textContent =
-          'Payment was not completed. Please try again.';
+          'Payment failed. Please try again.';
 
       }
     );
@@ -1596,98 +1318,75 @@ form.addEventListener('submit', async (e) => {
 
     razorpay.open();
 
-  } catch (error) {
+  }
+
+  catch(error){
 
     console.error(error);
 
     status.textContent =
       error.message ||
-      'Payment setup is not ready yet. Please try again.';
+      'Payment setup is not ready yet.';
 
   }
 
 });
 
 
-/* =========================================
-   SAVE CONFIRMATION AS PNG
-========================================= */
+/* SAVE CONFIRMATION AS IMAGE */
 
-document
-  .getElementById('saveConfirmation')
-  .addEventListener('click', async () => {
+document.getElementById(
+  'save-confirmation'
+).addEventListener(
+  'click',
+  async function(){
 
     const card =
       document.getElementById(
         'confirmation-card'
       );
 
+
     const button =
       document.getElementById(
-        'saveConfirmation'
+        'save-confirmation'
       );
 
-    const originalText =
-      button.innerHTML;
 
-    button.innerHTML =
-      'SAVING…';
-
-    button.disabled = true;
+    button.textContent =
+      'CREATING IMAGE…';
 
 
-    try {
-
-      /*
-        Wait briefly so the QR code
-        is fully rendered.
-      */
-
-      await new Promise(
-        resolve =>
-          setTimeout(resolve, 400)
-      );
-
+    try{
 
       const canvas =
-        await html2canvas(
-          card,
-          {
+        await html2canvas(card,{
 
-            scale: 2,
+          backgroundColor:'#120907',
 
-            useCORS: true,
+          scale:2,
 
-            allowTaint: false,
+          useCORS:true,
 
-            backgroundColor:
-              '#120c09',
+          allowTaint:true
 
-            logging: false,
-
-            imageTimeout:
-              15000
-
-          }
-        );
-
-
-      const bookingId =
-        document
-          .getElementById(
-            'confirm-booking'
-          )
-          .textContent
-          .trim();
+        });
 
 
       const link =
         document.createElement('a');
 
 
+      const booking =
+        document.getElementById(
+          'confirm-booking'
+        ).textContent;
+
+
       link.download =
-        bookingId +
-        '-HER-HOUR.png';
+        'HER-HOUR-' +
+        booking +
+        '.png';
 
 
       link.href =
@@ -1696,78 +1395,51 @@ document
         );
 
 
-      document.body.appendChild(link);
-
       link.click();
-
-      link.remove();
-
-
-      button.innerHTML =
-        '✓ &nbsp; SAVED';
-
-      setTimeout(() => {
-
-        button.innerHTML =
-          originalText;
-
-        button.disabled =
-          false;
-
-      }, 1800);
-
-
-    } catch (error) {
-
-      console.error(
-        'Image save failed:',
-        error
-      );
-
-      alert(
-        'Unable to save the confirmation image. Please try again.'
-      );
-
-      button.innerHTML =
-        originalText;
-
-      button.disabled =
-        false;
 
     }
 
-});
+    catch(error){
+
+      console.error(error);
+
+      alert(
+        'Unable to save the confirmation image. Please take a screenshot for now.'
+      );
+
+    }
 
 
-/* =========================================
-   SHARE
-========================================= */
+    button.innerHTML =
+      '↓ &nbsp; SAVE CONFIRMATION';
 
-document
-  .getElementById('shareConfirmation')
-  .addEventListener('click', async () => {
-
-    const bookingId =
-      document
-        .getElementById(
-          'confirm-booking'
-        )
-        .textContent
-        .trim();
+  }
+);
 
 
-    const shareText =
-      `I'm going to HER HOUR by The Collective House ✨\n\n` +
-      `24 October 2026 · 6:00 PM onwards\n` +
-      `Bizou Cafe & Grill, Coimbatore\n\n` +
-      `Booking ID: ${bookingId}`;
+/* SHARE */
+
+document.getElementById(
+  'share-confirmation'
+).addEventListener(
+  'click',
+  async function(){
+
+    const booking =
+      document.getElementById(
+        'confirm-booking'
+      ).textContent;
 
 
-    try {
+    const text =
+      'My HER HOUR by TCH booking is confirmed! ' +
+      'Booking ID: ' +
+      booking;
 
-      if (
-        navigator.share
-      ) {
+
+    if(navigator.share){
+
+      try{
 
         await navigator.share({
 
@@ -1775,34 +1447,37 @@ document
             'HER HOUR by TCH',
 
           text:
-            shareText,
+            text,
 
           url:
             window.location.href
 
         });
 
-      } else {
+      }
 
-        await navigator.clipboard.writeText(
-          shareText
-        );
+      catch(error){
 
-        alert(
-          'Booking details copied to clipboard.'
-        );
+        console.log(error);
 
       }
 
-    } catch (error) {
+    }
 
-      console.log(
-        'Share cancelled'
+    else{
+
+      await navigator.clipboard.writeText(
+        text
+      );
+
+      alert(
+        'Booking confirmation copied!'
       );
 
     }
 
-});
+  }
+);
 
 </script>
 
